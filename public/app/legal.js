@@ -23,7 +23,11 @@ function contactHtml() {
     return '<a href="mailto:' + esc(state.site.contact) + '">' + esc(state.site.contact) + "</a>";
   if (state.site.source)
     return (
-      '<a href="' + esc(state.site.source + "/issues") + '">' + esc(state.site.source + "/issues") + "</a>"
+      '<a href="' +
+      esc(state.site.source + "/issues") +
+      '" rel="nofollow noopener noreferrer">' +
+      esc(state.site.source + "/issues") +
+      "</a>"
     );
   return "";
 }
@@ -33,13 +37,21 @@ export function renderFooter() {
   if (state.site.contact)
     links.push('<a href="mailto:' + esc(state.site.contact) + '">' + t("legal.contactLink") + "</a>");
   if (state.site.source)
-    links.push('<a href="' + esc(state.site.source) + '">' + t("legal.sourceLink") + "</a>");
+    links.push(
+      '<a href="' +
+        esc(state.site.source) +
+        '" rel="nofollow noopener noreferrer">' +
+        t("legal.sourceLink") +
+        "</a>",
+    );
   el("foot").innerHTML =
     '<div class="links">' +
     links.join("") +
     "</div>" +
     "<div>" +
-    t("legal.poweredBy", { link: '<a href="https://www.last.fm">Last.fm</a>' }) +
+    t("legal.poweredBy", {
+      link: '<a href="https://www.last.fm" rel="nofollow noopener noreferrer">Last.fm</a>',
+    }) +
     " · " +
     t("legal.spotify") +
     "</div>";
@@ -70,7 +82,11 @@ export function screenLegal(page) {
 function renderLegal(page) {
   // Until the repository is public, the AGPL source is offered on request.
   const source = state.site.source
-    ? '<a href="' + esc(state.site.source) + '">' + esc(state.site.source) + "</a>"
+    ? '<a href="' +
+      esc(state.site.source) +
+      '" rel="nofollow noopener noreferrer">' +
+      esc(state.site.source) +
+      "</a>"
     : t("legal.sourceOnRequest", { contact: contactHtml() });
   const vars = { contact: contactHtml(), source: source };
   let html = "";

@@ -73,7 +73,7 @@ export async function expandAlbum(btn) {
   slot.innerHTML =
     '<div class="album-panel"><h4><a href="' +
     lastfmAlbumUrl(btn.dataset.artist, data.name) +
-    '" target="_blank" rel="noopener">' +
+    '" target="_blank" rel="nofollow noopener noreferrer">' +
     esc(data.name) +
     "</a> — " +
     t("album.known", { n: heard, total: data.tracks.length }) +
@@ -111,7 +111,7 @@ export async function expandAlbum(btn) {
           ">" +
           '<span><a href="' +
           lastfmTrackUrl(btn.dataset.artist, trk.name) +
-          '" target="_blank" rel="noopener">' +
+          '" target="_blank" rel="nofollow noopener noreferrer">' +
           esc(trk.name) +
           "</a>" +
           artistLinks(trk.artists) +
@@ -171,7 +171,13 @@ export function artistLinks(names) {
     '<div class="perf">' +
     names
       .map(function (n) {
-        return '<a href="' + lastfmArtistUrl(n) + '" target="_blank" rel="noopener">' + esc(n) + "</a>";
+        return (
+          '<a href="' +
+          lastfmArtistUrl(n) +
+          '" target="_blank" rel="nofollow noopener noreferrer">' +
+          esc(n) +
+          "</a>"
+        );
       })
       .join('<span class="sep">·</span>') +
     "</div>"

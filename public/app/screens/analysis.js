@@ -361,7 +361,7 @@ export function renderAnalysis() {
         const head =
           '<a class="who" href="' +
           lastfmArtistUrl(a.artist) +
-          '" target="_blank" rel="noopener">' +
+          '" target="_blank" rel="nofollow noopener noreferrer">' +
           esc(a.artist) +
           "</a>" +
           (known
@@ -397,7 +397,7 @@ export function renderAnalysis() {
               ">" +
               '<div><div class="title"><a href="' +
               lastfmTrackUrl(a.artist, trk.name) +
-              '" target="_blank" rel="noopener">' +
+              '" target="_blank" rel="nofollow noopener noreferrer">' +
               esc(trk.name) +
               "</a></div>" +
               artistLinks(trk.artists) +
@@ -415,7 +415,7 @@ export function renderAnalysis() {
               " ▾</button>" +
               ' <a class="albumlink" href="' +
               lastfmAlbumUrl(a.artist, trk.album) +
-              '" target="_blank" rel="noopener" title="' +
+              '" target="_blank" rel="nofollow noopener noreferrer" title="' +
               t("album.openOnLastfm") +
               '">↗</a></div></div>' +
               gauge(trk.plays) +

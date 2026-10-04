@@ -141,7 +141,7 @@ export function screenSetup(msg, step) {
       (msg.link
         ? ' <a href="' +
           esc(msg.link.href) +
-          '" target="_blank" rel="noopener">' +
+          '" target="_blank" rel="nofollow noopener noreferrer">' +
           esc(t(msg.link.label)) +
           "</a>"
         : "") +
@@ -153,7 +153,7 @@ export function screenSetup(msg, step) {
       '<ol class="steps">' +
       "<li>" +
       t("setup.spotify1") +
-      ' <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">' +
+      ' <a href="https://developer.spotify.com/dashboard" target="_blank" rel="nofollow noopener noreferrer">' +
       t("setup.linkSpotifyApp") +
       "</a></li>" +
       "<li>" +
@@ -179,12 +179,12 @@ export function screenSetup(msg, step) {
     html +=
       '<ol class="steps"><li>' +
       t("setup.lastfm1") +
-      ' <a href="https://www.last.fm/api/account/create" target="_blank" rel="noopener">' +
+      ' <a href="https://www.last.fm/api/account/create" target="_blank" rel="nofollow noopener noreferrer">' +
       t("setup.linkLfmKey") +
       "</a></li>" +
       "<li>" +
       t("setup.lastfm2") +
-      ' <a href="https://www.last.fm/api/accounts" target="_blank" rel="noopener">' +
+      ' <a href="https://www.last.fm/api/accounts" target="_blank" rel="nofollow noopener noreferrer">' +
       t("setup.linkLfmKeys") +
       "</a></li></ol>" +
       field("f_lfmUser", t("setup.lfmUser"), draft.lfmUser != null ? draft.lfmUser : state.cfg.lfmUser) +
