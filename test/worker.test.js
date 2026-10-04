@@ -236,7 +236,7 @@ test("HSTS covers subdomains on the primary domain only, and is absent locally",
     (await request("/")).headers.get("strict-transport-security"),
     "max-age=86400; includeSubDomains",
   );
-  const dev = await worker.fetch(new Request("https://scrobble-triage.example.workers.dev/"), ENV);
+  const dev = await worker.fetch(new Request("https://playlist-checker.example.workers.dev/"), ENV);
   assert.equal(dev.headers.get("strict-transport-security"), "max-age=86400");
   const local = await worker.fetch(new Request("http://localhost:8787/"), ENV);
   assert.equal(local.status, 200);
