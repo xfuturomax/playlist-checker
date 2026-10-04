@@ -28,6 +28,10 @@ how to run your own copy are in the [README](README.md).
 - **Translations.** Every interface text goes into `public/app/i18n.js` for all ten
   languages; English is the reference. Texts must not contain double quotes or `<`.
   Countable phrases use plural categories, placeholders use `{name}`.
+- **Links to other sites.** Every link off the site (Last.fm, Spotify, the source
+  repository) carries `rel="nofollow noopener noreferrer"`, so crawlers do not follow it and
+  the other site does not learn where the visitor came from. Links within the site and
+  `mailto:` links do not. A test checks this across `public/app/`.
 - **Legal texts.** When the Privacy or Terms texts change, update `LEGAL_UPDATED` (and
   `LEGAL_PAGES` when a paragraph is added or removed).
 - **Changelog.** A user-visible change gets an entry under `Unreleased` in `CHANGELOG.md`.
