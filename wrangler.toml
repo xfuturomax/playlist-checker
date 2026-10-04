@@ -1,0 +1,53 @@
+name = "playlist-checker"
+main = "src/worker/index.js"
+compatibility_date = "2026-01-01"
+
+# No storage and no secrets: the worker keeps no state and holds no
+# credentials. The Spotify Client ID, the Last.fm key and username, and the
+# cache of Last.fm answers all live in each visitor's browser.
+
+# No request logs or traces: relay addresses carry Last.fm usernames and names
+# of what is being checked. Uploaded versions get no preview addresses.
+preview_urls = false
+
+# The site lives at playlistchecker.com; www redirects to it (done by the
+# worker once PRIMARY_DOMAIN is set). The workers.dev address stays on for
+# everyone who set the app up there: stated explicitly, because with routes
+# present a missing setting can turn it off on deploy.
+workers_dev = true
+routes = [
+  { pattern = "playlistchecker.com", custom_domain = true },
+  { pattern = "www.playlistchecker.com", custom_domain = true },
+]
+
+# The app's code, stylesheet and images, served as-is; every other path goes
+# to the worker.
+[assets]
+directory = "./public"
+
+# Search engines, link previews and first-time visitors on any other address
+# are pointed here. Set only once the domain answers over https.
+[vars]
+PRIMARY_DOMAIN = "playlistchecker.com"
+# Shown in the footer and on the Privacy and Terms screens; left out when unset.
+CONTACT_EMAIL = "hello@playlistchecker.com"
+# The public source code, linked from every screen as AGPL-3.0 requires; when
+# unset, the Terms offer the source on request.
+SOURCE_URL = "https://github.com/xfuturomax/playlist-checker"
+
+[observability]
+enabled = false
+
+# Caps how often one address can use the Last.fm relay (the page itself makes
+# about 240 calls a minute). The only binding; the worker runs without it.
+[[ratelimits]]
+name = "RELAY_LIMITER"
+namespace_id = "1001"
+simple = { limit = 600, period = 60 }
+
+# Local runs see their own address rather than the production domain, so the
+# worker recognises them (no https redirect, no HSTS, local links).
+[dev]
+port = 8787
+host = "localhost:8787"
+upstream_protocol = "http"

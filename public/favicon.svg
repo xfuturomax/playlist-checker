@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<style>
+.tile { fill: #22262e; }
+.ticks { fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .tile { fill: #f2f4f7; }
+  .ticks { fill: #131519; }
+}
+</style>
+<rect class="tile" width="64" height="64" rx="14"/>
+<g class="ticks"><rect x="9" y="40" width="6" height="10" rx="3"/><rect x="19" y="34" width="6" height="16" rx="3"/><rect x="29" y="28" width="6" height="22" rx="3"/><rect x="39" y="22" width="6" height="28" rx="3"/><rect x="49" y="16" width="6" height="34" rx="3"/></g>
+</svg>
