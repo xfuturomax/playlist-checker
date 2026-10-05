@@ -99,7 +99,7 @@ test("relay gives Last.fm a time limit", async () => {
 
 test("sitemap lists the root and the legal pages", async () => {
   const body = await (await request("/sitemap.xml")).text();
-  for (const loc of ["/", "/privacy", "/terms"]) {
+  for (const loc of ["/", "/privacy", "/terms", "/ru", "/ru/privacy", "/pt-br/terms"]) {
     assert.ok(body.includes("<loc>https://playlistchecker.com" + loc + "</loc>"), loc);
   }
 });

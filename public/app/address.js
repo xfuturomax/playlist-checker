@@ -1,6 +1,6 @@
 import { state } from "./state.js";
 import { sweepCache } from "./lastfm-cache.js";
-import { isLegalPage } from "./i18n.js";
+import { publicPageAddress, readPublicPage } from "./pages.js";
 import { screenChecking } from "./layout.js";
 import { screenLegal } from "./legal.js";
 import { screenAbout, setupNotBegun } from "./screens/about.js";
@@ -30,12 +30,14 @@ export function readAddress() {
   return parseAddress(location.pathname, location.search);
 }
 
+// lang: the language a public page's address names; English addresses name none.
 export function parseAddress(pathname, search) {
   const parts = pathname.split("/").filter(Boolean);
 
-  if (parts.length === 1 && isLegalPage(parts[0].toLowerCase())) {
-    return { screen: "legal", page: parts[0].toLowerCase() };
-  }
+  const named = readPublicPage(pathname);
+  const lang = named && named.prefixed && named.lang !== "en" ? { lang: named.lang } : {};
+  if (named && named.page) return { screen: "legal", page: named.page, ...lang };
+  if (named && lang.lang) return { screen: "about", ...lang };
 
   if (parts.length === 1 && parts[0] === "about") return { screen: "about" };
 
@@ -51,9 +53,12 @@ export function parseAddress(pathname, search) {
   return { screen: "analysis", id: id, filter: q.get("f") || "all", genre: q.get("g") || "" };
 }
 
+// A legal screen's address is always in the language it is shown in; the
+// start screen keeps a language address only when it came with one.
 function addressOf(route) {
-  if (route.screen === "about") return "/about";
-  if (route.screen === "legal") return "/" + route.page;
+  if (route.screen === "about")
+    return route.lang && route.lang !== "en" ? publicPageAddress(route.lang, "") : "/about";
+  if (route.screen === "legal") return publicPageAddress(state.lang, route.page);
   if (route.screen === "setup") return "/setup" + (route.step ? "/" + route.step : "");
   if (route.screen !== "analysis") return "/";
   const q = new URLSearchParams();
@@ -76,12 +81,24 @@ export function writeAddress(route, push) {
   }
 }
 
+// After a language switch, an address that names a language moves to the new
+// one, without a history step; every other address stays.
+export function followLanguage() {
+  const route = readAddress();
+  if (route.screen === "legal") writeAddress({ screen: "legal", page: route.page }, false);
+  else if (route.screen === "about" && route.lang) writeAddress({ screen: "about", lang: state.lang }, false);
+}
+
 // The screen decision shared by start-up, back and forward, and Continue on
 // the start screen: the start screen first, then the setup guide while
 // something is missing, then sign-in, then the address. A return from
 // Spotify's sign-in page is handled before this, at start-up.
 export async function decideScreen(route) {
-  if (route.screen === "about") return screenAbout();
+  if (route.screen === "about") {
+    // Settles a variant such as /RU/ on the plain language address.
+    if (route.lang) writeAddress(route, false);
+    return screenAbout();
+  }
   // Readable in any state of setup, and never a reason to sign in.
   if (route.screen === "legal") return screenLegal(route.page);
   // A setup-step address is honoured as far as it is reachable, so someone

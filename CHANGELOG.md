@@ -5,6 +5,14 @@ versioning: [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- The start screen, Privacy and Terms have an address in every interface language
+  (`/ru`, `/de/privacy`…), served in that language to search engines and link previews,
+  with each page naming its translations; the sitemap lists them all
+- Opening such an address switches the interface to its language; switching language on it
+  moves to the same page in the new language
+
 ### Changed
 
 - One top bar on every screen: the product name, Setup or Playlists, About, the account menu,
@@ -14,6 +22,9 @@ versioning: [SemVer](https://semver.org/).
   name, available on every screen
 - Reset asks for confirmation before erasing anything
 - On a phone the bar takes two rows instead of spilling over the screen
+- Privacy and Terms links lead to the version in the current interface language
+- The browser tab title on the start screen, Privacy and Terms matches the page's title in
+  search results
 
 ## [0.1.0] — 2026-10-04
 

@@ -44,6 +44,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Erase",
     "nav.resetCancel": "Cancel",
     "about.headline": "Find what’s new in any playlist",
+    "about.description":
+      "See which tracks in a Spotify playlist you have already heard on Last.fm, and keep only the new ones. Nothing is stored on the server.",
     "about.lead":
       "See which tracks in a playlist you have already heard, and keep only the new ones. Your Last.fm history, applied to your Spotify playlists.",
     "about.benefit1": "Every track and artist in a playlist is checked against your Last.fm history.",
@@ -267,6 +269,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Borrar",
     "nav.resetCancel": "Cancelar",
     "about.headline": "Encuentra lo nuevo en cualquier playlist",
+    "about.description":
+      "Mira qué canciones de una playlist de Spotify ya escuchaste según Last.fm y quédate solo con las nuevas. Nada se guarda en el servidor.",
     "about.lead":
       "Descubre qué canciones de una playlist ya has escuchado y quédate solo con las nuevas. Tu historial de Last.fm, aplicado a tus playlists de Spotify.",
     "about.benefit1": "Cada canción y artista de la playlist se compara con tu historial de Last.fm.",
@@ -494,6 +498,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Apagar",
     "nav.resetCancel": "Cancelar",
     "about.headline": "Encontre o que é novo em qualquer playlist",
+    "about.description":
+      "Veja quais faixas de uma playlist do Spotify você já ouviu segundo o Last.fm e fique só com as novas. Nada é guardado no servidor.",
     "about.lead":
       "Veja quais faixas de uma playlist você já ouviu e fique só com as novas. Seu histórico do Last.fm, aplicado às suas playlists do Spotify.",
     "about.benefit1": "Cada faixa e artista da playlist é comparado com seu histórico do Last.fm.",
@@ -718,6 +724,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Löschen",
     "nav.resetCancel": "Abbrechen",
     "about.headline": "Finde das Neue in jeder Playlist",
+    "about.description":
+      "Sieh, welche Titel einer Spotify-Playlist du laut Last.fm schon gehört hast, und behalte nur die neuen. Auf dem Server wird nichts gespeichert.",
     "about.lead":
       "Sieh, welche Titel einer Playlist du schon gehört hast – und behalte nur die neuen. Dein Last.fm-Verlauf, angewendet auf deine Spotify-Playlists.",
     "about.benefit1": "Alle Titel und Künstler einer Playlist werden mit deinem Last.fm-Verlauf abgeglichen.",
@@ -947,6 +955,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Effacer",
     "nav.resetCancel": "Annuler",
     "about.headline": "Trouvez la nouveauté dans n’importe quelle playlist",
+    "about.description":
+      "Voyez quels titres d’une playlist Spotify vous avez déjà écoutés selon Last.fm, et ne gardez que les nouveaux. Rien n’est conservé sur le serveur.",
     "about.lead":
       "Voyez quels titres d’une playlist vous avez déjà écoutés et ne gardez que les nouveaux. Votre historique Last.fm, appliqué à vos playlists Spotify.",
     "about.benefit1": "Chaque titre et chaque artiste de la playlist est comparé à votre historique Last.fm.",
@@ -1173,6 +1183,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Cancella",
     "nav.resetCancel": "Annulla",
     "about.headline": "Trova il nuovo in ogni playlist",
+    "about.description":
+      "Scopri quali brani di una playlist Spotify hai già ascoltato secondo Last.fm e tieni solo quelli nuovi. Nulla viene salvato sul server.",
     "about.lead":
       "Scopri quali brani di una playlist hai già ascoltato e tieni solo quelli nuovi. La tua cronologia Last.fm, applicata alle tue playlist Spotify.",
     "about.benefit1": "Ogni brano e artista della playlist viene confrontato con la tua cronologia Last.fm.",
@@ -1400,6 +1412,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Usuń",
     "nav.resetCancel": "Anuluj",
     "about.headline": "Znajdź nowości w każdej playliście",
+    "about.description":
+      "Zobacz, które utwory z playlisty Spotify masz już w historii Last.fm, i zostaw tylko nowe. Nic nie jest zapisywane na serwerze.",
     "about.lead":
       "Zobacz, które utwory z playlisty są ci już znane, i zostaw tylko nowe. Twoja historia z Last.fm zastosowana do playlist w Spotify.",
     "about.benefit1": "Każdy utwór i wykonawca z playlisty jest sprawdzany w twojej historii Last.fm.",
@@ -1639,6 +1653,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Sil",
     "nav.resetCancel": "Vazgeç",
     "about.headline": "Her çalma listesinde yenileri bulun",
+    "about.description":
+      "Bir Spotify çalma listesindeki hangi şarkıları Last.fm’e göre zaten dinlediğinizi görün ve yalnızca yenileri tutun. Sunucuda hiçbir şey saklanmaz.",
     "about.lead":
       "Bir çalma listesindeki hangi parçaları zaten dinlediğinizi görün, yalnızca yenileri tutun. Last.fm geçmişiniz, Spotify çalma listelerinize uygulanır.",
     "about.benefit1": "Listedeki her parça ve sanatçı Last.fm geçmişinizle karşılaştırılır.",
@@ -1859,6 +1875,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "消去",
     "nav.resetCancel": "キャンセル",
     "about.headline": "どのプレイリストでも、新しい曲が見つかる",
+    "about.description":
+      "Spotify のプレイリストで Last.fm 上すでに聴いた曲を見分け、新しい曲だけを残せます。サーバーには何も保存されません。",
     "about.lead":
       "プレイリストのどの曲をもう聴いたかがわかり、新しい曲だけを残せます。Last.fm の再生履歴を Spotify のプレイリストに重ねて使います。",
     "about.benefit1": "プレイリストの曲とアーティストを、Last.fm の再生履歴と照らし合わせます。",
@@ -2076,6 +2094,8 @@ export const DICTIONARIES = {
     "nav.resetConfirm": "Стереть",
     "nav.resetCancel": "Отмена",
     "about.headline": "Найдите новое в любом плейлисте",
+    "about.description":
+      "Узнайте, какие треки плейлиста Spotify вы уже слышали по данным Last.fm, и оставьте только новые. На сервере ничего не хранится.",
     "about.lead":
       "Узнайте, какие треки из плейлиста вы уже слышали, и оставьте только новые. Ваша история Last.fm — для ваших плейлистов Spotify.",
     "about.benefit1": "Каждый трек и исполнитель плейлиста сверяется с вашей историей Last.fm.",
