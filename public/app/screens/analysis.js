@@ -167,21 +167,6 @@ export async function screenAnalyse(playlistId, opts) {
   loadTargets();
 }
 
-export function backLink() {
-  return '<a class="back" href="#" id="back">' + t("analysis.back") + "</a>";
-}
-
-export function wireBack() {
-  el("back").onclick = function (e) {
-    e.preventDefault();
-    // Stepping back keeps history honest when we pushed the analysis
-    // ourselves; arriving by address leaves nothing behind to step to.
-    if (history.state && history.state.fromList) return history.back();
-    writeAddress({ screen: "list" }, false);
-    screenPlaylists();
-  };
-}
-
 function progressPercent() {
   if (!state.analysisProgress || !state.analysisProgress.total) return 0;
   return Math.round((state.analysisProgress.done / state.analysisProgress.total) * 100);
@@ -193,29 +178,25 @@ function progressLabel() {
 
 function renderAnalyseProgress() {
   state.view.innerHTML =
-    backLink() +
-    masthead(esc(state.currentPlaylist.name)) +
+    masthead(esc(state.currentPlaylist.name), "", "", "list") +
     '<div class="state" id="progress">' +
     progressLabel() +
     "</div>" +
     '<div class="bar"><i id="pbar"></i></div>';
   el("pbar").style.width = progressPercent() + "%";
-  wireBack();
 }
 
 // Last.fm asked to slow down; what was asked so far is cached, so a retry
 // continues rather than starts over.
 function renderAnalyseBusy(playlistId) {
   state.view.innerHTML =
-    backLink() +
-    masthead(state.currentPlaylist ? esc(state.currentPlaylist.name) : esc(I18N.product)) +
+    masthead(state.currentPlaylist ? esc(state.currentPlaylist.name) : esc(I18N.product), "", "", "list") +
     '<div class="notice">' +
     t("err.lfmBusy") +
     "</div>" +
     '<p><button class="btn primary" id="retryAnalysis">' +
     t("analysis.retry") +
     "</button></p>";
-  wireBack();
   el("retryAnalysis").onclick = function () {
     screenAnalyse(playlistId, { byAddress: state.analysisByAddress });
   };
@@ -223,12 +204,10 @@ function renderAnalyseBusy(playlistId) {
 
 function renderAnalyseError() {
   state.view.innerHTML =
-    backLink() +
-    masthead(state.currentPlaylist ? esc(state.currentPlaylist.name) : esc(I18N.product)) +
+    masthead(state.currentPlaylist ? esc(state.currentPlaylist.name) : esc(I18N.product), "", "", "list") +
     '<div class="notice">' +
     t("analysis.readError") +
     "</div>";
-  wireBack();
 }
 
 // A playlist that cannot be opened. Reached by address there is no list behind
@@ -283,17 +262,16 @@ export function renderAnalysis() {
     unheard: t("count.unheard", { n: state.totals.newTracks }),
   });
   const recheckLabel = esc(t("filter.recheck"));
-  let html =
-    backLink() +
-    masthead(
-      esc(state.currentPlaylist.name),
-      summary,
-      '<button type="button" class="icobtn" id="recheck" title="' +
-        recheckLabel +
-        '" aria-label="' +
-        recheckLabel +
-        '">↻</button>',
-    );
+  let html = masthead(
+    esc(state.currentPlaylist.name),
+    summary,
+    '<button type="button" class="icobtn" id="recheck" title="' +
+      recheckLabel +
+      '" aria-label="' +
+      recheckLabel +
+      '">↻</button>',
+    "list",
+  );
 
   if (state.analysisTruncated) {
     html += '<div class="notice">' + t("analysis.truncated", { n: LIMIT }) + "</div>";
@@ -445,8 +423,6 @@ export function renderAnalysis() {
 }
 
 function wireAnalysis() {
-  wireBack();
-
   Array.prototype.forEach.call(state.view.querySelectorAll(".chip[data-f]"), function (c) {
     c.onclick = function () {
       state.filter = c.dataset.f;

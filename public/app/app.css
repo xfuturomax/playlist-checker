@@ -77,12 +77,6 @@ body {
 .legal {
   max-width: 640px;
 }
-.legal h2 {
-  margin: 6px 0 14px;
-  font-size: 24px;
-  font-weight: 680;
-  letter-spacing: -0.02em;
-}
 .legal p {
   font-size: 14px;
   line-height: 1.6;
@@ -92,40 +86,170 @@ a {
   color: var(--text);
 }
 
+/* The same bar on every screen: name, navigation, account, language and theme. */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 18px;
+}
+.brand {
+  font-weight: 640;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.tb-nav {
+  display: flex;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.tb-nav a {
+  color: var(--dim);
+  text-decoration: none;
+  padding: 3px 0;
+  border-bottom: 1.5px solid transparent;
+}
+.tb-nav a:hover {
+  color: var(--text);
+}
+.tb-nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+.acct {
+  position: relative;
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.acct summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--dim);
+  padding: 3px 0;
+}
+.acct summary::-webkit-details-marker {
+  display: none;
+}
+.acct summary::after {
+  content: " ▾";
+}
+.acct summary:hover,
+.acct[open] summary {
+  color: var(--text);
+}
+.acct-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  min-width: 170px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-2);
+}
+.acct-panel a,
+.acct-panel button {
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: var(--r-sm);
+  padding: 7px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.acct-panel a:hover,
+.acct-panel button:hover {
+  background: var(--surface-2);
+}
+.acct-panel .danger {
+  color: var(--danger);
+}
+#acctReset {
+  display: flex;
+  flex-direction: column;
+}
+.acct-q {
+  padding: 7px 10px 3px;
+  color: var(--dim);
+  max-width: 220px;
+}
+.tb-prefs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.acct + .tb-prefs {
+  margin-left: 0;
+}
+@media (max-width: 600px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "brand prefs" "nav acct";
+    align-items: center;
+    gap: 8px 10px;
+  }
+  .brand {
+    grid-area: brand;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .topbar .langsel {
+    max-width: 118px;
+  }
+  .topbar .themebtn {
+    padding: 6px 7px;
+  }
+  .tb-prefs {
+    grid-area: prefs;
+    gap: 6px;
+  }
+  .tb-nav {
+    grid-area: nav;
+  }
+  .acct {
+    grid-area: acct;
+    justify-self: end;
+  }
+}
+
+/* The screen's own header under the bar: title, details and actions. */
 .masthead {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
   flex-wrap: wrap;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
   margin-bottom: 18px;
 }
 .masthead h1 {
   margin: 0;
-  font-size: 19px;
-  font-weight: 640;
+  font-size: 21px;
+  font-weight: 660;
   letter-spacing: -0.02em;
+}
+.masthead .icobtn {
+  margin-left: auto;
 }
 .meta {
   font-family: var(--mono);
   font-size: 11.5px;
   color: var(--dim);
-}
-.back {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--dim);
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-.mh-side {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 .langsel {
   font-family: var(--mono);

@@ -4,7 +4,6 @@ import { el, esc, toast } from "../dom.js";
 import { isBusy, isKeyRefusal } from "../lastfm.js";
 import { clearCache } from "../lastfm-cache.js";
 import { masthead } from "../layout.js";
-import { backLink, wireBack } from "./analysis.js";
 import { exportSettings, importSettings } from "../settings-file.js";
 import { login } from "../spotify.js";
 import { storageDrop, storageGet, storageSet } from "../storage.js";
@@ -125,13 +124,14 @@ export function screenSetup(msg, step) {
     signin: t("setup.signIn"),
   };
   const draft = draftGet();
-  // Only once the visitor is signed in is there a list to go back to.
-  let html = state.me ? backLink() : "";
-  html += masthead(
+  // Signed in, the bar shows Playlists instead and nothing is highlighted.
+  let html = masthead(
     t("setup.title"),
     t("setup.step", { n: SETUP_STEPS.indexOf(setupStep) + 1, total: SETUP_STEPS.length }) +
       " · " +
       esc(titles[setupStep]),
+    "",
+    "setup",
   );
 
   if (text) {
@@ -243,7 +243,6 @@ function wireSetup() {
   });
 
   const copy = el("copyRedirect");
-  if (el("back")) wireBack();
   if (copy)
     copy.onclick = function () {
       copyText(state.redirectUri);

@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import { sweepCache } from "./lastfm-cache.js";
 import { isLegalPage } from "./i18n.js";
+import { screenChecking } from "./layout.js";
 import { screenLegal } from "./legal.js";
 import { screenAbout, setupNotBegun } from "./screens/about.js";
 import { screenAnalyse } from "./screens/analysis.js";
@@ -93,6 +94,8 @@ export async function decideScreen(route) {
 
   // A later navigation during the sign-in check owns the screen.
   const seq = ++state.screenSeq;
+  if (!state.me && loadToken())
+    screenChecking(route.screen === "analysis" || route.screen === "list" ? "list" : null);
   const problem = await signInProblem();
   if (seq !== state.screenSeq) return;
   if (problem) return screenSetup(problem.msg, problem.step);

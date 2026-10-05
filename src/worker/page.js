@@ -28,6 +28,7 @@ export const APP_MODULES = [
   "settings-file",
   "actions",
   "albums",
+  "account",
   "screens/about",
   "screens/setup",
   "screens/playlists",

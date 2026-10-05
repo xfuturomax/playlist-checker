@@ -5,6 +5,16 @@ versioning: [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- One top bar on every screen: the product name, Setup or Playlists, About, the account menu,
+  language and theme. The separate "← Playlists" and "← Back" links are gone; the bar and
+  the browser's back button take their place
+- Settings, Sign out and Reset moved from the playlist list into a menu under the account
+  name, available on every screen
+- Reset asks for confirmation before erasing anything
+- On a phone the bar takes two rows instead of spilling over the screen
+
 ## [0.1.0] — 2026-10-04
 
 First public release.

@@ -38,6 +38,11 @@ export const DICTIONARIES = {
     "theme.system": "System",
     "common.loading": "Loading…",
     "about.link": "About",
+    "nav.label": "Main",
+    "nav.account": "Account",
+    "nav.resetQuestion": "Erase everything stored in this browser?",
+    "nav.resetConfirm": "Erase",
+    "nav.resetCancel": "Cancel",
     "about.headline": "Find what’s new in any playlist",
     "about.lead":
       "See which tracks in a playlist you have already heard, and keep only the new ones. Your Last.fm history, applied to your Spotify playlists.",
@@ -58,7 +63,6 @@ export const DICTIONARIES = {
     "legal.spotify": "Not affiliated with or endorsed by Spotify.",
     "legal.updated": "Last updated: {date}",
     "legal.englishPrevails": "",
-    "legal.back": "← Back",
     "privacy.title": "Privacy",
     "privacy.description": "What Playlist Checker keeps, where it keeps it, and how to erase it.",
     "privacy.1":
@@ -178,7 +182,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "That playlist couldn’t be opened. It may have been deleted, or you may no longer have access to it.",
 
-    "analysis.back": "← Playlists",
     "analysis.reading": "Reading playlist…",
     "analysis.progress": "Checking Last.fm… {done} of {total}",
     "analysis.readError":
@@ -258,6 +261,11 @@ export const DICTIONARIES = {
     "theme.system": "Sistema",
     "common.loading": "Cargando…",
     "about.link": "Acerca de",
+    "nav.label": "Principal",
+    "nav.account": "Cuenta",
+    "nav.resetQuestion": "¿Borrar todo lo guardado en este navegador?",
+    "nav.resetConfirm": "Borrar",
+    "nav.resetCancel": "Cancelar",
     "about.headline": "Encuentra lo nuevo en cualquier playlist",
     "about.lead":
       "Descubre qué canciones de una playlist ya has escuchado y quédate solo con las nuevas. Tu historial de Last.fm, aplicado a tus playlists de Spotify.",
@@ -279,7 +287,6 @@ export const DICTIONARIES = {
     "legal.updated": "Última actualización: {date}",
     "legal.englishPrevails":
       "Esto es una traducción. Si difiere de la versión en inglés, prevalece la versión en inglés.",
-    "legal.back": "← Volver",
     "privacy.title": "Privacidad",
     "privacy.description": "Qué guarda Playlist Checker, dónde lo guarda y cómo borrarlo.",
     "privacy.1":
@@ -402,7 +409,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "No se pudo abrir esa playlist. Puede que se haya eliminado o que ya no tengas acceso a ella.",
 
-    "analysis.back": "← Playlists",
     "analysis.reading": "Leyendo la playlist…",
     "analysis.progress": "Comparando con Last.fm… {done} de {total}",
     "analysis.readError":
@@ -482,6 +488,11 @@ export const DICTIONARIES = {
     "theme.system": "Sistema",
     "common.loading": "Carregando…",
     "about.link": "Sobre",
+    "nav.label": "Principal",
+    "nav.account": "Conta",
+    "nav.resetQuestion": "Apagar tudo o que está guardado neste navegador?",
+    "nav.resetConfirm": "Apagar",
+    "nav.resetCancel": "Cancelar",
     "about.headline": "Encontre o que é novo em qualquer playlist",
     "about.lead":
       "Veja quais faixas de uma playlist você já ouviu e fique só com as novas. Seu histórico do Last.fm, aplicado às suas playlists do Spotify.",
@@ -502,7 +513,6 @@ export const DICTIONARIES = {
     "legal.spotify": "Sem vínculo com o Spotify nem endosso dele.",
     "legal.updated": "Última atualização: {date}",
     "legal.englishPrevails": "Esta é uma tradução. Se divergir da versão em inglês, vale a versão em inglês.",
-    "legal.back": "← Voltar",
     "privacy.title": "Privacidade",
     "privacy.description": "O que o Playlist Checker guarda, onde guarda e como apagar.",
     "privacy.1":
@@ -623,7 +633,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Não foi possível abrir essa playlist. Ela pode ter sido excluída ou você pode não ter mais acesso a ela.",
 
-    "analysis.back": "← Playlists",
     "analysis.reading": "Lendo a playlist…",
     "analysis.progress": "Comparando com o Last.fm… {done} de {total}",
     "analysis.readError":
@@ -703,6 +712,11 @@ export const DICTIONARIES = {
     "theme.system": "System",
     "common.loading": "Wird geladen…",
     "about.link": "Über",
+    "nav.label": "Hauptmenü",
+    "nav.account": "Konto",
+    "nav.resetQuestion": "Alles löschen, was in diesem Browser gespeichert ist?",
+    "nav.resetConfirm": "Löschen",
+    "nav.resetCancel": "Abbrechen",
     "about.headline": "Finde das Neue in jeder Playlist",
     "about.lead":
       "Sieh, welche Titel einer Playlist du schon gehört hast – und behalte nur die neuen. Dein Last.fm-Verlauf, angewendet auf deine Spotify-Playlists.",
@@ -724,7 +738,6 @@ export const DICTIONARIES = {
     "legal.updated": "Zuletzt aktualisiert: {date}",
     "legal.englishPrevails":
       "Dies ist eine Übersetzung. Weicht sie von der englischen Fassung ab, gilt die englische Fassung.",
-    "legal.back": "← Zurück",
     "privacy.title": "Datenschutz",
     "privacy.description": "Was Playlist Checker speichert, wo, und wie du es löschst.",
     "privacy.1":
@@ -847,7 +860,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Diese Playlist konnte nicht geöffnet werden. Vielleicht wurde sie gelöscht, oder du hast keinen Zugriff mehr darauf.",
 
-    "analysis.back": "← Playlists",
     "analysis.reading": "Playlist wird gelesen…",
     "analysis.progress": "Abgleich mit Last.fm… {done} von {total}",
     "analysis.readError":
@@ -929,6 +941,11 @@ export const DICTIONARIES = {
     "theme.system": "Système",
     "common.loading": "Chargement…",
     "about.link": "À propos",
+    "nav.label": "Principal",
+    "nav.account": "Compte",
+    "nav.resetQuestion": "Effacer tout ce qui est enregistré dans ce navigateur ?",
+    "nav.resetConfirm": "Effacer",
+    "nav.resetCancel": "Annuler",
     "about.headline": "Trouvez la nouveauté dans n’importe quelle playlist",
     "about.lead":
       "Voyez quels titres d’une playlist vous avez déjà écoutés et ne gardez que les nouveaux. Votre historique Last.fm, appliqué à vos playlists Spotify.",
@@ -950,7 +967,6 @@ export const DICTIONARIES = {
     "legal.updated": "Dernière mise à jour : {date}",
     "legal.englishPrevails":
       "Ceci est une traduction. En cas de différence avec la version anglaise, la version anglaise prévaut.",
-    "legal.back": "← Retour",
     "privacy.title": "Confidentialité",
     "privacy.description": "Ce que Playlist Checker conserve, où, et comment l’effacer.",
     "privacy.1":
@@ -1072,7 +1088,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Cette playlist n’a pas pu être ouverte. Elle a peut-être été supprimée, ou tu n’y as plus accès.",
 
-    "analysis.back": "← Playlists",
     "analysis.reading": "Lecture de la playlist…",
     "analysis.progress": "Vérification sur Last.fm… {done} sur {total}",
     "analysis.readError":
@@ -1152,6 +1167,11 @@ export const DICTIONARIES = {
     "theme.system": "Sistema",
     "common.loading": "Caricamento…",
     "about.link": "Informazioni",
+    "nav.label": "Principale",
+    "nav.account": "Account",
+    "nav.resetQuestion": "Cancellare tutto ciò che è salvato in questo browser?",
+    "nav.resetConfirm": "Cancella",
+    "nav.resetCancel": "Annulla",
     "about.headline": "Trova il nuovo in ogni playlist",
     "about.lead":
       "Scopri quali brani di una playlist hai già ascoltato e tieni solo quelli nuovi. La tua cronologia Last.fm, applicata alle tue playlist Spotify.",
@@ -1173,7 +1193,6 @@ export const DICTIONARIES = {
     "legal.updated": "Ultimo aggiornamento: {date}",
     "legal.englishPrevails":
       "Questa è una traduzione. In caso di differenze con la versione inglese, prevale la versione inglese.",
-    "legal.back": "← Indietro",
     "privacy.title": "Privacy",
     "privacy.description": "Cosa conserva Playlist Checker, dove, e come cancellarlo.",
     "privacy.1":
@@ -1296,7 +1315,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Non è stato possibile aprire questa playlist. Forse è stata eliminata o non hai più accesso.",
 
-    "analysis.back": "← Playlist",
     "analysis.reading": "Lettura della playlist…",
     "analysis.progress": "Confronto con Last.fm… {done} di {total}",
     "analysis.readError":
@@ -1376,6 +1394,11 @@ export const DICTIONARIES = {
     "theme.system": "Systemowy",
     "common.loading": "Ładowanie…",
     "about.link": "O aplikacji",
+    "nav.label": "Główne",
+    "nav.account": "Konto",
+    "nav.resetQuestion": "Usunąć wszystko, co zapisano w tej przeglądarce?",
+    "nav.resetConfirm": "Usuń",
+    "nav.resetCancel": "Anuluj",
     "about.headline": "Znajdź nowości w każdej playliście",
     "about.lead":
       "Zobacz, które utwory z playlisty są ci już znane, i zostaw tylko nowe. Twoja historia z Last.fm zastosowana do playlist w Spotify.",
@@ -1396,7 +1419,6 @@ export const DICTIONARIES = {
     "legal.spotify": "Niepowiązane ze Spotify ani przez nie niepopierane.",
     "legal.updated": "Ostatnia aktualizacja: {date}",
     "legal.englishPrevails": "To jest tłumaczenie. W razie rozbieżności obowiązuje wersja angielska.",
-    "legal.back": "← Wróć",
     "privacy.title": "Prywatność",
     "privacy.description": "Co przechowuje Playlist Checker, gdzie i jak to usunąć.",
     "privacy.1":
@@ -1523,7 +1545,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Nie udało się otworzyć tej playlisty. Mogła zostać usunięta albo nie masz już do niej dostępu.",
 
-    "analysis.back": "← Playlisty",
     "analysis.reading": "Czytam playlistę…",
     "analysis.progress": "Sprawdzam w Last.fm… {done} z {total}",
     "analysis.readError":
@@ -1612,6 +1633,11 @@ export const DICTIONARIES = {
     "theme.system": "Sistem",
     "common.loading": "Yükleniyor…",
     "about.link": "Hakkında",
+    "nav.label": "Ana menü",
+    "nav.account": "Hesap",
+    "nav.resetQuestion": "Bu tarayıcıda kayıtlı her şey silinsin mi?",
+    "nav.resetConfirm": "Sil",
+    "nav.resetCancel": "Vazgeç",
     "about.headline": "Her çalma listesinde yenileri bulun",
     "about.lead":
       "Bir çalma listesindeki hangi parçaları zaten dinlediğinizi görün, yalnızca yenileri tutun. Last.fm geçmişiniz, Spotify çalma listelerinize uygulanır.",
@@ -1633,7 +1659,6 @@ export const DICTIONARIES = {
     "legal.updated": "Son güncelleme: {date}",
     "legal.englishPrevails":
       "Bu bir çeviridir. İngilizce sürümle farklılık olursa İngilizce sürüm geçerlidir.",
-    "legal.back": "← Geri",
     "privacy.title": "Gizlilik",
     "privacy.description": "Playlist Checker neyi, nerede saklar ve nasıl silinir.",
     "privacy.1":
@@ -1755,7 +1780,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Bu çalma listesi açılamadı. Silinmiş olabilir ya da artık erişiminiz olmayabilir.",
 
-    "analysis.back": "← Çalma listeleri",
     "analysis.reading": "Çalma listesi okunuyor…",
     "analysis.progress": "Last.fm ile karşılaştırılıyor… {done} / {total}",
     "analysis.readError":
@@ -1829,6 +1853,11 @@ export const DICTIONARIES = {
     "theme.system": "システム",
     "common.loading": "読み込み中…",
     "about.link": "このアプリについて",
+    "nav.label": "メイン",
+    "nav.account": "アカウント",
+    "nav.resetQuestion": "このブラウザーに保存されたものをすべて消去しますか？",
+    "nav.resetConfirm": "消去",
+    "nav.resetCancel": "キャンセル",
     "about.headline": "どのプレイリストでも、新しい曲が見つかる",
     "about.lead":
       "プレイリストのどの曲をもう聴いたかがわかり、新しい曲だけを残せます。Last.fm の再生履歴を Spotify のプレイリストに重ねて使います。",
@@ -1849,7 +1878,6 @@ export const DICTIONARIES = {
     "legal.spotify": "Spotify とは提携しておらず、Spotify の承認も受けていません。",
     "legal.updated": "最終更新：{date}",
     "legal.englishPrevails": "これは翻訳です。英語版と異なる場合は英語版が優先されます。",
-    "legal.back": "← 戻る",
     "privacy.title": "プライバシー",
     "privacy.description": "Playlist Checker が何をどこに保存し、どう消去できるか。",
     "privacy.1":
@@ -1969,7 +1997,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "このプレイリストを開けませんでした。削除されたか、アクセスできなくなった可能性があります。",
 
-    "analysis.back": "← プレイリスト",
     "analysis.reading": "プレイリストを読み込み中…",
     "analysis.progress": "Last.fm と照合中… {done} / {total}",
     "analysis.readError":
@@ -2043,6 +2070,11 @@ export const DICTIONARIES = {
     "theme.system": "Системная",
     "common.loading": "Гружу…",
     "about.link": "О сервисе",
+    "nav.label": "Основное",
+    "nav.account": "Аккаунт",
+    "nav.resetQuestion": "Стереть всё, что сохранено в этом браузере?",
+    "nav.resetConfirm": "Стереть",
+    "nav.resetCancel": "Отмена",
     "about.headline": "Найдите новое в любом плейлисте",
     "about.lead":
       "Узнайте, какие треки из плейлиста вы уже слышали, и оставьте только новые. Ваша история Last.fm — для ваших плейлистов Spotify.",
@@ -2063,7 +2095,6 @@ export const DICTIONARIES = {
     "legal.spotify": "Не связан со Spotify и не одобрен Spotify.",
     "legal.updated": "Обновлено: {date}",
     "legal.englishPrevails": "Это перевод. Если он расходится с английской версией, действует английская.",
-    "legal.back": "← Назад",
     "privacy.title": "Конфиденциальность",
     "privacy.description": "Что хранит Playlist Checker, где и как это стереть.",
     "privacy.1":
@@ -2191,7 +2222,6 @@ export const DICTIONARIES = {
     "nav.playlistUnavailable":
       "Не получилось открыть этот плейлист. Возможно, он удалён или больше недоступен тебе.",
 
-    "analysis.back": "← Плейлисты",
     "analysis.reading": "Читаю плейлист…",
     "analysis.progress": "Сверяю с Last.fm… {done} из {total}",
     "analysis.readError":

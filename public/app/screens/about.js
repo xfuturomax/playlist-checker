@@ -27,7 +27,7 @@ export function screenAbout() {
 function renderAbout() {
   const fresh = setupNotBegun();
   state.view.innerHTML =
-    masthead(esc(I18N.product), "", "", true) +
+    masthead(esc(I18N.product), "", "", "about") +
     '<div class="hero">' +
     "<h2>" +
     t("about.headline") +

@@ -1,11 +1,10 @@
 import { state } from "./state.js";
-import { decideScreen, writeAddress } from "./address.js";
+import { writeAddress } from "./address.js";
 import { el, esc } from "./dom.js";
 import { masthead } from "./layout.js";
-import { screenAbout, setupNotBegun } from "./screens/about.js";
+import { setupNotBegun } from "./screens/about.js";
 import { copyText, saveDraft } from "./screens/setup.js";
 import { exportSettings } from "./settings-file.js";
-import { loadToken } from "./spotify.js";
 import { storageGet, storageSet } from "./storage.js";
 import { LEGAL_PAGES } from "./i18n.js";
 import { I18N, t } from "./text.js";
@@ -93,34 +92,11 @@ function renderLegal(page) {
   for (let i = 1; i <= LEGAL_PAGES[page]; i++) html += "<p>" + t(page + "." + i, vars) + "</p>";
   const prevails = t("legal.englishPrevails");
   state.view.innerHTML =
-    masthead(esc(I18N.product), "", "", false) +
-    '<a class="back" href="#" id="legalBack">' +
-    t("legal.back") +
-    "</a>" +
-    '<div class="legal"><h2>' +
-    t(page + ".title") +
-    "</h2>" +
+    masthead(t(page + ".title"), t("legal.updated", { date: legalDate() }), "", null) +
+    '<div class="legal">' +
     (prevails ? '<div class="notice">' + prevails + "</div>" : "") +
     html +
-    '<p class="fineprint">' +
-    t("legal.updated", { date: legalDate() }) +
-    "</p></div>";
-  el("legalBack").onclick = function (e) {
-    e.preventDefault();
-    leaveLegal();
-  };
-}
-
-// Back within the app when we pushed this screen ourselves; otherwise to the
-// list when signed in, or to the start screen when not.
-function leaveLegal() {
-  if (history.state && history.state.fromList) return history.back();
-  if (loadToken()) {
-    writeAddress({ screen: "list" }, false);
-    return decideScreen({ screen: "list" });
-  }
-  writeAddress({ screen: "about" }, false);
-  screenAbout();
+    "</div>";
 }
 
 export function openLegal(page) {

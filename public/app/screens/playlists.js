@@ -1,16 +1,12 @@
 import { state } from "../state.js";
-import { writeAddress } from "../address.js";
-import { el, esc } from "../dom.js";
-import { CACHE_SEP, PLAYLISTS_TTL_MS, cacheDrop, cacheGet, cachePut, clearCache } from "../lastfm-cache.js";
+import { esc } from "../dom.js";
+import { CACHE_SEP, PLAYLISTS_TTL_MS, cacheDrop, cacheGet, cachePut } from "../lastfm-cache.js";
 import { masthead } from "../layout.js";
-import { PICKS_KEY } from "../picks.js";
 import { screenAnalyse } from "./analysis.js";
-import { screenSetup } from "./setup.js";
-import { SIGNIN_STATE_KEY, VERIFIER_KEY, sp } from "../spotify.js";
-import { sessionTake, storageDrop } from "../storage.js";
+import { sp } from "../spotify.js";
 import { t } from "../text.js";
 
-function playlistsCacheKey() {
+export function playlistsCacheKey() {
   return ["playlists", state.me.id].join(CACHE_SEP);
 }
 
@@ -75,23 +71,11 @@ export async function screenPlaylists() {
 
 function renderPlaylistsLoading() {
   state.view.innerHTML =
-    masthead(t("playlists.title")) + '<div class="state">' + t("common.loading") + "</div>";
+    masthead(t("playlists.title"), "", "", "list") + '<div class="state">' + t("common.loading") + "</div>";
 }
 
 function renderPlaylists() {
-  let html = masthead(
-    t("playlists.title"),
-    esc(state.me.display_name || state.me.id) +
-      ' · <a href="#" id="settings">' +
-      t("playlists.settings") +
-      "</a>" +
-      ' · <a href="#" id="signOut">' +
-      t("playlists.signOut") +
-      "</a>" +
-      ' · <a href="#" id="reset">' +
-      t("playlists.reset") +
-      "</a>",
-  );
+  let html = masthead(t("playlists.title"), "", "", "list");
 
   if (state.listNotice) html += '<div class="notice">' + t(state.listNotice) + "</div>";
   html += '<div class="notice">' + t("playlists.radarNote") + "</div>";
@@ -124,39 +108,4 @@ function renderPlaylists() {
       screenAnalyse(row.dataset.id, { push: true });
     };
   });
-  el("settings").onclick = function (e) {
-    e.preventDefault();
-    writeAddress({ screen: "setup", step: "spotify" }, true);
-    screenSetup(null, "spotify");
-  };
-  el("signOut").onclick = function (e) {
-    e.preventDefault();
-    signOut();
-  };
-  el("reset").onclick = async function (e) {
-    e.preventDefault();
-    await clearCache();
-    localStorage.clear();
-    location.href = state.redirectUri;
-  };
-}
-
-const SPOTIFY_APPS_URL = "https://www.spotify.com/account/apps/";
-
-// Ends the Spotify session in this browser and keeps everything needed to
-// sign in again. The Last.fm details stay; Reset is the way to remove them.
-async function signOut() {
-  if (state.me) await cacheDrop("meta", playlistsCacheKey());
-  storageDrop("sp_token");
-  storageDrop(PICKS_KEY);
-  sessionTake(SIGNIN_STATE_KEY);
-  sessionTake(VERIFIER_KEY);
-  state.token = null;
-  state.me = null;
-  state.playlists = [];
-  state.playlistsLoaded = false;
-  state.picked.clear();
-  state.currentPlaylist = null;
-  state.albumCache.clear();
-  screenSetup({ key: "signOut.notice", link: { href: SPOTIFY_APPS_URL, label: "signOut.revoke" } }, "signin");
 }

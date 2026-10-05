@@ -1,8 +1,8 @@
 import { state } from "./state.js";
 import { buildTargetCombo } from "./actions.js";
-import { el } from "./dom.js";
+import { el, esc } from "./dom.js";
 import { renderFooter, renderMoved } from "./legal.js";
-import { storageSet } from "./storage.js";
+import { storageGet, storageSet } from "./storage.js";
 import { I18N, LANG_KEY, hasLanguage, langPicker, t } from "./text.js";
 import { themePicker } from "./theme.js";
 
@@ -15,21 +15,93 @@ const BAR_TEXTS = {
   doClear: "bar.clear",
 };
 
-// noAbout: the start screen itself carries no link to itself.
-export function masthead(titleHtml, metaHtml, actionHtml, noAbout) {
-  // The About link joins the meta line, separated like the links already in it.
-  const about = noAbout ? "" : '<a href="/about" id="aboutLink">' + t("about.link") + "</a>";
-  const meta = [metaHtml, about].filter(Boolean).join(" · ");
+// The same bar on every screen; only the highlighted item changes. current:
+// "setup", "list", "about" or null. signedIn decides Setup or Playlists and
+// where the product name leads; account is the signed-in Spotify account
+// when this tab already knows it.
+export function topBar(current, signedIn, account) {
+  function item(nav, href, label) {
+    return (
+      '<a href="' +
+      href +
+      '" data-nav="' +
+      nav +
+      '"' +
+      (nav === current ? ' aria-current="page"' : "") +
+      ">" +
+      label +
+      "</a>"
+    );
+  }
   return (
-    '<div class="masthead"><h1>' +
-    titleHtml +
-    '</h1><span class="mh-side">' +
-    (meta ? '<span class="meta">' + meta + "</span>" : "") +
-    (actionHtml || "") +
+    '<header class="topbar">' +
+    '<a class="brand" href="' +
+    (signedIn ? "/" : "/about") +
+    '" data-nav="home">' +
+    esc(I18N.product) +
+    "</a>" +
+    '<nav class="tb-nav" aria-label="' +
+    t("nav.label") +
+    '">' +
+    (signedIn ? item("list", "/", t("playlists.title")) : item("setup", "/setup", t("setup.title"))) +
+    item("about", "/about", t("about.link")) +
+    "</nav>" +
+    (account ? accountMenu(account) : "") +
+    '<span class="tb-prefs">' +
     langPicker() +
     themePicker() +
-    "</span></div>"
+    "</span></header>"
   );
+}
+
+// A disclosure rather than an application menu: its entries are ordinary
+// links and buttons reached with Tab. The account module closes it and
+// handles the entries.
+function accountMenu(account) {
+  return (
+    '<details class="acct" id="acct">' +
+    "<summary>" +
+    esc(account.display_name || account.id) +
+    "</summary>" +
+    '<div class="acct-panel" role="group" aria-label="' +
+    t("nav.account") +
+    '">' +
+    '<a href="/setup/spotify" data-nav="settings">' +
+    t("playlists.settings") +
+    "</a>" +
+    '<button type="button" data-acct="signOut">' +
+    t("playlists.signOut") +
+    "</button>" +
+    '<span id="acctReset"><button type="button" class="danger" data-acct="reset">' +
+    t("playlists.reset") +
+    "</button></span></div></details>"
+  );
+}
+
+// The bar, then the screen's own header: its title as the page's main
+// heading, a line of details and the screen's actions. Without a title only
+// the bar is drawn.
+export function masthead(titleHtml, metaHtml, actionHtml, current) {
+  const bar = topBar(current || null, !!storageGet("sp_token"), state.me);
+  if (!titleHtml) return bar;
+  return (
+    bar +
+    '<div class="masthead"><h1>' +
+    titleHtml +
+    "</h1>" +
+    (metaHtml ? '<span class="meta">' + metaHtml + "</span>" : "") +
+    (actionHtml || "") +
+    "</div>"
+  );
+}
+
+// Shown while the sign-in is checked or completed, so the bar never vanishes.
+export function screenChecking(current) {
+  state.rerender = function () {
+    screenChecking(current);
+  };
+  state.view.innerHTML =
+    masthead("", "", "", current) + '<div class="state">' + t("common.loading") + "</div>";
 }
 
 export function applyStaticTexts() {
