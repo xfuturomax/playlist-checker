@@ -9,7 +9,8 @@ import { inlineScriptHashes, renderPage } from "./page.js";
 import { lastfm } from "./relay.js";
 import { json, text } from "./responses.js";
 import { robotsTxt, sitemapXml } from "./seo.js";
-import { contactEmail, isLocalHost, legalPage, primaryDomain, siteOrigin, sourceUrl } from "./site.js";
+import { contactEmail, isLocalHost, primaryDomain, siteOrigin, sourceUrl } from "./site.js";
+import { publicPageAddress, readPublicPage } from "../../public/app/pages.js";
 
 // Sign-in values are only valid where the sign-in started; never carry them on.
 const SIGN_IN_PARAMS = ["code", "state", "error"];
@@ -28,11 +29,18 @@ export default {
   },
 };
 
+// English has only the plain addresses: /en/privacy is /privacy.
+function englishPath(pathname) {
+  const named = readPublicPage(pathname);
+  return named && named.prefixed && named.lang === "en" ? publicPageAddress("en", named.page) : pathname;
+}
+
 async function route(request, env, url) {
   const primary = primaryDomain(env);
+  const path = englishPath(url.pathname);
 
   if (primary && url.hostname === "www." + primary) {
-    return Response.redirect("https://" + primary + url.pathname + withoutSignIn(url.searchParams), 301);
+    return Response.redirect("https://" + primary + path + withoutSignIn(url.searchParams), 301);
   }
 
   const plainHttp = url.protocol === "http:" && !isLocalHost(url.hostname);
@@ -50,7 +58,11 @@ async function route(request, env, url) {
 
   // 308 keeps the method.
   if (plainHttp) {
-    return Response.redirect("https://" + url.host + url.pathname + withoutSignIn(url.searchParams), 308);
+    return Response.redirect("https://" + url.host + path + withoutSignIn(url.searchParams), 308);
+  }
+
+  if (path !== url.pathname) {
+    return Response.redirect(url.protocol + "//" + url.host + path + withoutSignIn(url.searchParams), 301);
   }
 
   // Existing app files never reach the worker; a missing one is an error, not the page.
@@ -77,7 +89,7 @@ async function route(request, env, url) {
     contact: contactEmail(env),
     source: sourceUrl(env),
   };
-  const html = renderPage({ origin: siteOrigin(url, primary), page: legalPage(url.pathname), site });
+  const html = renderPage({ origin: siteOrigin(url, primary), named: readPublicPage(url.pathname), site });
   return new Response(html, {
     headers: {
       "content-type": "text/html; charset=utf-8",

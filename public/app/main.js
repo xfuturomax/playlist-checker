@@ -5,7 +5,7 @@ import { initState, state } from "./state.js";
 import { initActionBar } from "./actions.js";
 import { initAccountMenu } from "./account.js";
 import { decideScreen, parseAddress, readAddress, writeAddress } from "./address.js";
-import { applyStaticTexts, screenChecking, setLang } from "./layout.js";
+import { applyStaticTexts, screenChecking, setLang, useLang } from "./layout.js";
 import { openLegal } from "./legal.js";
 import { openAbout, setupNotBegun } from "./screens/about.js";
 import { saveDraft } from "./screens/setup.js";
@@ -48,12 +48,14 @@ function initPageListeners() {
     if (btn) setTheme(btn.getAttribute("data-theme-pref"));
   });
   window.addEventListener("popstate", function () {
-    decideScreen(readAddress());
+    const route = readAddress();
+    if (route.lang && route.lang !== state.lang) useLang(route.lang);
+    decideScreen(route);
   });
 }
 
 initState();
-state.lang = resolveLang();
+state.lang = resolveLang(readAddress().lang);
 initTheme();
 initActionBar();
 initPageListeners();

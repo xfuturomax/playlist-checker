@@ -3,6 +3,7 @@ import { decideScreen, writeAddress } from "../address.js";
 import { el, esc } from "../dom.js";
 import { masthead } from "../layout.js";
 import { legalLink } from "../legal.js";
+import { publicPageTitle } from "../pages.js";
 import { draftGet, saveDraft, screenSetup } from "./setup.js";
 import { I18N, t } from "../text.js";
 
@@ -60,6 +61,7 @@ function renderAbout() {
     shot("analysis", 880, 900, t("about.shot")) +
     shot("album", 880, 774, t("about.albumShot")) +
     "</div>";
+  document.title = publicPageTitle("", t);
 
   el("aboutGo").onclick = function () {
     if (setupNotBegun()) {
