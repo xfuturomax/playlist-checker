@@ -1,6 +1,5 @@
 import { state } from "./state.js";
 import { buildTargetCombo } from "./actions.js";
-import { followLanguage } from "./address.js";
 import { el, esc } from "./dom.js";
 import { renderFooter, renderMoved } from "./legal.js";
 import { storageGet, storageSet } from "./storage.js";
@@ -81,11 +80,8 @@ function accountMenu(account) {
 
 // The bar, then the screen's own header: its title as the page's main
 // heading, a line of details and the screen's actions. Without a title only
-// the bar is drawn. Every screen draws one, so this is where the tab title
-// returns to the product name; the start screen and the legal screens then set
-// their own.
+// the bar is drawn.
 export function masthead(titleHtml, metaHtml, actionHtml, current) {
-  document.title = I18N.product;
   const bar = topBar(current || null, !!storageGet("sp_token"), state.me);
   if (!titleHtml) return bar;
   return (
@@ -110,6 +106,7 @@ export function screenChecking(current) {
 
 export function applyStaticTexts() {
   document.documentElement.lang = state.lang;
+  document.title = I18N.product;
   Object.keys(BAR_TEXTS).forEach(function (id) {
     el(id).textContent = t(BAR_TEXTS[id]);
   });
@@ -119,17 +116,10 @@ export function applyStaticTexts() {
   renderFooter();
 }
 
-// Without redrawing the screen: for start-up and back or forward, where the
-// screen is drawn next anyway.
-export function useLang(code) {
+export function setLang(code) {
+  if (!hasLanguage(code)) return;
   state.lang = code;
   storageSet(LANG_KEY, code);
   applyStaticTexts();
-}
-
-export function setLang(code) {
-  if (!hasLanguage(code)) return;
-  useLang(code);
   if (state.rerender) state.rerender();
-  followLanguage();
 }

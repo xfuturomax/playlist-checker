@@ -1,6 +1,14 @@
 // What the deployment says about itself: its domain, contact and source, read
 // from the variables in wrangler.toml and checked before use.
 
+import { isLegalPage } from "../../public/app/i18n.js";
+
+// "/Privacy/" and "/privacy?x" are the Privacy page too; anything else is not.
+export function legalPage(pathname) {
+  const name = pathname.toLowerCase().replace(/\/+$/, "").slice(1);
+  return isLegalPage(name) ? name : null;
+}
+
 // CONTACT_EMAIL counts only when it looks like an address, so the footer
 // never offers a broken mail link.
 export function contactEmail(env) {

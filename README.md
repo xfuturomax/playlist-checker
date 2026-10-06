@@ -148,17 +148,10 @@ Two settings under `[vars]` feed the footer and the Privacy and Terms pages:
 
 ### Your own domain
 
-The page carries its start-screen text, a preferred address, link-preview tags and
-picture, and the worker answers `/robots.txt` and `/sitemap.xml`, all over https. Without
-`PRIMARY_DOMAIN` these are built from the domain the site is requested at; on a local host
-they use the local address.
-
-The start screen, Privacy and Terms have an address in every interface language, so search
-engines can index each translation: English at `/`, `/privacy` and `/terms`, every other
-language under its code (`/ru`, `/ru/privacy`, `/pt-br/terms`). Each is served in its own
-language and names its versions in the others; the sitemap lists all thirty. Opening such an
-address switches the interface to that language and remembers it. The app's own screens
-keep addresses without a language, and `/en/…` redirects to the plain English address.
+The page carries its English start-screen text, a preferred address, link-preview tags and
+picture, and the worker answers `/robots.txt` and `/sitemap.xml` (site root, Privacy and
+Terms), all over https. Without `PRIMARY_DOMAIN` these are built from the domain the site
+is requested at; on a local host they use the local address.
 
 `PRIMARY_DOMAIN` (a bare host name such as `playlistchecker.com`) names the domain the
 site lives at. Once it is set:
@@ -183,8 +176,7 @@ To attach a domain:
    address. To try it on a preview, pass it for that upload only
    (`wrangler versions upload --var PRIMARY_DOMAIN:<domain>`).
 4. Add `https://<domain>/` as a Redirect URI in your own Spotify app.
-5. Register the domain with the search engines (Google Search Console, Bing Webmaster Tools,
-   Yandex Webmaster; a DNS record proves ownership) and submit `/sitemap.xml` to each.
+5. Register the domain in Google Search Console and submit `/sitemap.xml`.
 
 The `workers.dev` address is deliberately not redirected: people using it would lose their
 settings and sign-in.
@@ -224,8 +216,7 @@ Placeholders use `{name}`. Texts are inserted into HTML as-is, so they must not 
 double quotes or `<`.
 
 To add a language, add `{ code, name }` to `LANGUAGES` and a dictionary with all English
-keys to `DICTIONARIES`. Its start screen, Privacy and Terms then get their own addresses
-under the code in lowercase, and the link-preview locale goes into `src/worker/seo.js`.
+keys to `DICTIONARIES`.
 
 The Privacy and Terms texts are there too. When they change, update `LEGAL_UPDATED`, and
 `LEGAL_PAGES` when a paragraph is added or removed; the English text is the one that

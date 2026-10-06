@@ -1,11 +1,12 @@
 import { state } from "./state.js";
-import { storageGet, storageSet } from "./storage.js";
-import { DICTIONARIES, LANGUAGES, PRODUCT_NAME } from "./i18n.js";
+import { storageGet } from "./storage.js";
+import { DICTIONARIES, LANGUAGES, LEGAL_UPDATED, PRODUCT_NAME } from "./i18n.js";
 
 export const I18N = {
   product: PRODUCT_NAME,
   languages: LANGUAGES,
   dictionaries: DICTIONARIES,
+  legalUpdated: LEGAL_UPDATED,
 };
 
 export const LANG_KEY = "lang";
@@ -30,12 +31,7 @@ export function hasLanguage(code) {
   return Object.prototype.hasOwnProperty.call(I18N.dictionaries, code);
 }
 
-// A language named by the address wins over everything and is remembered.
-export function resolveLang(named) {
-  if (named && hasLanguage(named)) {
-    storageSet(LANG_KEY, named);
-    return named;
-  }
+export function resolveLang() {
   const saved = storageGet(LANG_KEY);
   if (saved && hasLanguage(saved)) return saved;
   const prefs =

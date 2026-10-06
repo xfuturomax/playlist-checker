@@ -7,26 +7,28 @@ import { copyText, saveDraft } from "./screens/setup.js";
 import { exportSettings } from "./settings-file.js";
 import { storageGet, storageSet } from "./storage.js";
 import { LEGAL_PAGES } from "./i18n.js";
-import { legalDate, legalPlaceholders, publicPageAddress, publicPageTitle } from "./pages.js";
-import { t } from "./text.js";
+import { I18N, t } from "./text.js";
 
 // A real link, so a new tab or a copied address still work; a plain click is
 // handled in the page by the delegated listener.
 export function legalLink(page, html) {
   return (
-    '<a href="' +
-    publicPageAddress(state.lang, page) +
-    '" data-legal="' +
-    page +
-    '">' +
-    (html || t("legal." + page + "Link")) +
-    "</a>"
+    '<a href="/' + page + '" data-legal="' + page + '">' + (html || t("legal." + page + "Link")) + "</a>"
   );
 }
 
-function linkHtml(href, label) {
-  const external = href.startsWith("mailto:") ? "" : ' rel="nofollow noopener noreferrer"';
-  return '<a href="' + esc(href) + '"' + external + ">" + esc(label) + "</a>";
+function contactHtml() {
+  if (state.site.contact)
+    return '<a href="mailto:' + esc(state.site.contact) + '">' + esc(state.site.contact) + "</a>";
+  if (state.site.source)
+    return (
+      '<a href="' +
+      esc(state.site.source + "/issues") +
+      '" rel="nofollow noopener noreferrer">' +
+      esc(state.site.source + "/issues") +
+      "</a>"
+    );
+  return "";
 }
 
 export function renderFooter() {
@@ -54,6 +56,16 @@ export function renderFooter() {
     "</div>";
 }
 
+function legalDate() {
+  try {
+    return new Intl.DateTimeFormat(state.lang, { dateStyle: "long", timeZone: "UTC" }).format(
+      new Date(I18N.legalUpdated + "T00:00:00Z"),
+    );
+  } catch (e) {
+    return I18N.legalUpdated;
+  }
+}
+
 export function screenLegal(page) {
   state.screenSeq++;
   state.bar.classList.remove("on");
@@ -67,18 +79,24 @@ export function screenLegal(page) {
 }
 
 function renderLegal(page) {
-  // Without a public repository, the AGPL source is offered on request.
-  const vars = legalPlaceholders(state.site, t, linkHtml);
+  // Until the repository is public, the AGPL source is offered on request.
+  const source = state.site.source
+    ? '<a href="' +
+      esc(state.site.source) +
+      '" rel="nofollow noopener noreferrer">' +
+      esc(state.site.source) +
+      "</a>"
+    : t("legal.sourceOnRequest", { contact: contactHtml() });
+  const vars = { contact: contactHtml(), source: source };
   let html = "";
   for (let i = 1; i <= LEGAL_PAGES[page]; i++) html += "<p>" + t(page + "." + i, vars) + "</p>";
   const prevails = t("legal.englishPrevails");
   state.view.innerHTML =
-    masthead(t(page + ".title"), t("legal.updated", { date: legalDate(state.lang) }), "", null) +
+    masthead(t(page + ".title"), t("legal.updated", { date: legalDate() }), "", null) +
     '<div class="legal">' +
     (prevails ? '<div class="notice">' + prevails + "</div>" : "") +
     html +
     "</div>";
-  document.title = publicPageTitle(page, t);
 }
 
 export function openLegal(page) {

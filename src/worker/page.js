@@ -1,9 +1,9 @@
 // The HTML shell of the page. The app itself is a set of browser modules and a
 // stylesheet under /app/, served as static files; the shell adds what depends
-// on the request: the language, head tags, the text for readers that do not
-// run scripts, and the site settings.
+// on the request: head tags, the English text for readers that do not run
+// scripts, and the site settings.
 
-import { headTags, servedText } from "./seo.js";
+import { headTags, SERVED_LEGAL, SERVED_TEXT } from "./seo.js";
 
 // Every module the page loads, announced up front so the browser fetches them
 // in parallel instead of one import level at a time.
@@ -25,7 +25,6 @@ export const APP_MODULES = [
   "picks",
   "totals",
   "address",
-  "pages",
   "settings-file",
   "actions",
   "albums",
@@ -80,7 +79,7 @@ export function inlineScriptHashes() {
 }
 
 const SHELL = `<!DOCTYPE html>
-<html lang="<!--__LANG__-->">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -118,12 +117,11 @@ const SHELL = `<!DOCTYPE html>
 </html>
 `;
 
-// named: { lang, page } for a public page, or null for any other address.
-export function renderPage({ origin, named, site }) {
+// page: "privacy", "terms" or null for the start screen.
+export function renderPage({ origin, page, site }) {
   // A replacer function keeps "$" sequences in texts literal.
-  return SHELL.replace("<!--__LANG__-->", () => (named ? named.lang : "en"))
-    .replace("<!--__HEAD__-->", () => headTags(origin, named))
+  return SHELL.replace("<!--__HEAD__-->", () => headTags(origin, page))
     .replace("<!--__PRELOADS__-->", () => PRELOADS)
     .replace("<!--__SITE__-->", () => escapeScriptJson(site))
-    .replace("<!--__SERVED__-->", () => servedText(named, site));
+    .replace("<!--__SERVED__-->", () => (page ? SERVED_LEGAL[page] : SERVED_TEXT));
 }

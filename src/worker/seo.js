@@ -1,67 +1,22 @@
 // What crawlers and link previewers read: head tags, the robots file, the
-// sitemap and the text served inside the page for readers that do not run
-// scripts. The public pages (start screen, Privacy, Terms) are served in the
-// language their address names; every other address gets the English start
-// screen.
+// sitemap and the English text served inside the page for readers that do not
+// run scripts.
 
 import { esc } from "../../public/app/html.js";
-import { DICTIONARIES, LANGUAGES, LEGAL_PAGES, PRODUCT_NAME } from "../../public/app/i18n.js";
-import { legalDate, legalPlaceholders, publicPageAddress, publicPageTitle } from "../../public/app/pages.js";
+import { DICTIONARIES, LEGAL_PAGES, LEGAL_UPDATED, PRODUCT_NAME } from "../../public/app/i18n.js";
 
-// The form link previewers expect, which differs from the page's language code.
-const PREVIEW_LOCALES = {
-  en: "en_US",
-  es: "es_ES",
-  "pt-BR": "pt_BR",
-  de: "de_DE",
-  fr: "fr_FR",
-  it: "it_IT",
-  pl: "pl_PL",
-  tr: "tr_TR",
-  ja: "ja_JP",
-  ru: "ru_RU",
-};
+const TITLE = PRODUCT_NAME + " — " + DICTIONARIES.en["about.headline"];
+const DESCRIPTION =
+  "See which tracks in a Spotify playlist you have already heard on Last.fm, " +
+  "and keep only the new ones. Nothing is stored on the server.";
 
-const PUBLIC_PAGES = ["", ...Object.keys(LEGAL_PAGES)];
-
-// Texts in a language, escaped for HTML. Values put into placeholders are
-// expected to be escaped already.
-function htmlText(lang) {
-  const dict = DICTIONARIES[lang];
-  return (key, vars) => {
-    let s = esc(dict[key] ?? DICTIONARIES.en[key]);
-    for (const [name, value] of Object.entries(vars || {})) s = s.split("{" + name + "}").join(value);
-    return s;
-  };
-}
-
-// The page's language versions, with English also standing in for languages
-// the site does not have.
-function alternates(origin, page) {
-  const links = LANGUAGES.map(
-    ({ code }) =>
-      '<link rel="alternate" hreflang="' +
-      code +
-      '" href="' +
-      esc(origin + publicPageAddress(code, page)) +
-      '">',
-  );
-  links.push(
-    '<link rel="alternate" hreflang="x-default" href="' + esc(origin + publicPageAddress("en", page)) + '">',
-  );
-  return links.join("\n");
-}
-
-// named: { lang, page } for a public page, or null for any other address,
-// which is presented as the English start screen at the site root.
-export function headTags(origin, named) {
-  const lang = named ? named.lang : "en";
-  const page = named ? named.page : "";
-  const text = htmlText(lang);
-  const address = esc(origin + publicPageAddress(lang, page));
-  const title = publicPageTitle(page, text);
-  const description = text((page || "about") + ".description");
+export function headTags(origin, page) {
+  const en = DICTIONARIES.en;
+  const root = esc(origin + "/" + (page || ""));
+  const title = esc(page ? en[page + ".title"] + " — " + PRODUCT_NAME : TITLE);
+  const description = esc(page ? en[page + ".description"] : DESCRIPTION);
   const image = esc(origin + "/img/preview.png");
+  const alt = esc(DICTIONARIES.en["about.shot"]);
   return (
     "<title>" +
     title +
@@ -72,9 +27,6 @@ export function headTags(origin, named) {
     '<meta property="og:site_name" content="' +
     esc(PRODUCT_NAME) +
     '">\n' +
-    '<meta property="og:locale" content="' +
-    PREVIEW_LOCALES[lang] +
-    '">\n' +
     '<meta name="description" content="' +
     description +
     '">\n' +
@@ -82,11 +34,10 @@ export function headTags(origin, named) {
     description +
     '">\n' +
     '<link rel="canonical" href="' +
-    address +
+    root +
     '">\n' +
-    (named ? alternates(origin, page) + "\n" : "") +
     '<meta property="og:url" content="' +
-    address +
+    root +
     '">\n' +
     '<meta property="og:image" content="' +
     image +
@@ -94,7 +45,7 @@ export function headTags(origin, named) {
     '<meta property="og:image:width" content="1200">\n' +
     '<meta property="og:image:height" content="630">\n' +
     '<meta property="og:image:alt" content="' +
-    text("about.shot") +
+    alt +
     '">\n' +
     '<meta name="twitter:card" content="summary_large_image">\n' +
     '<meta name="twitter:image" content="' +
@@ -103,87 +54,64 @@ export function headTags(origin, named) {
   );
 }
 
-// The start screen in every language, built once, for crawlers and previewers
-// that read the page without running it. An inline snippet clears it before
-// the first paint.
-const SERVED_START = Object.fromEntries(
-  LANGUAGES.map(({ code }) => {
-    const text = htmlText(code);
-    const html =
-      '<div class="hero"><h2>' +
-      text("about.headline") +
-      "</h2>" +
-      '<p class="lead">' +
-      text("about.lead") +
-      "</p>" +
-      '<ul class="benefits"><li>' +
-      text("about.benefit1") +
-      "</li><li>" +
-      text("about.benefit2") +
-      "</li><li>" +
-      text("about.benefit3") +
-      "</li></ul>" +
-      "<h3>" +
-      text("about.howTitle") +
-      '</h3><p class="how">' +
-      text("about.how") +
-      "</p>" +
-      "<p>" +
-      text("about.privacy") +
-      '</p><p class="fineprint">' +
-      text("about.setupTime") +
-      "</p></div>";
-    return [code, html];
+// The start screen in English, built once, for crawlers and previewers that
+// read the page without running it. An inline snippet clears it before the first paint.
+export const SERVED_TEXT = (() => {
+  const en = (key) => esc(DICTIONARIES.en[key]);
+  return (
+    '<div class="hero"><h2>' +
+    en("about.headline") +
+    "</h2>" +
+    '<p class="lead">' +
+    en("about.lead") +
+    "</p>" +
+    '<ul class="benefits"><li>' +
+    en("about.benefit1") +
+    "</li><li>" +
+    en("about.benefit2") +
+    "</li><li>" +
+    en("about.benefit3") +
+    "</li></ul>" +
+    "<h3>" +
+    en("about.howTitle") +
+    '</h3><p class="how">' +
+    en("about.how") +
+    "</p>" +
+    "<p>" +
+    en("about.privacy") +
+    '</p><p class="fineprint">' +
+    en("about.setupTime") +
+    "</p></div>"
+  );
+})();
+
+// The Privacy and Terms texts in English, for the same readers. Their links
+// are left out: the app draws the real ones.
+export const SERVED_LEGAL = Object.fromEntries(
+  Object.entries(LEGAL_PAGES).map(([page, count]) => {
+    const en = DICTIONARIES.en;
+    let html = '<div class="legal"><h2>' + esc(en[page + ".title"]) + "</h2>";
+    for (let i = 1; i <= count; i++) {
+      html += "<p>" + esc(en[page + "." + i].replace(/\s*\{(contact|source)\}/g, "")) + "</p>";
+    }
+    html +=
+      '<p class="fineprint">' + esc(en["legal.updated"].replace("{date}", LEGAL_UPDATED)) + "</p></div>";
+    return [page, html];
   }),
 );
-
-// A Privacy or Terms text as the app draws it, with the contact and source
-// as plain text: the app draws the real links.
-function servedLegal(lang, page, site) {
-  const text = htmlText(lang);
-  const vars = legalPlaceholders(site, text, (href, label) => esc(label));
-  const prevails = text("legal.englishPrevails");
-  let html = '<div class="legal"><h2>' + text(page + ".title") + "</h2>";
-  if (prevails) html += '<div class="notice">' + prevails + "</div>";
-  for (let i = 1; i <= LEGAL_PAGES[page]; i++) html += "<p>" + text(page + "." + i, vars) + "</p>";
-  return (
-    html + '<p class="fineprint">' + text("legal.updated", { date: esc(legalDate(lang)) }) + "</p></div>"
-  );
-}
-
-export function servedText(named, site) {
-  if (named && named.page) return servedLegal(named.lang, named.page, site);
-  return SERVED_START[named ? named.lang : "en"];
-}
 
 export function robotsTxt(origin) {
   return "User-agent: *\nAllow: /\nSitemap: " + origin + "/sitemap.xml\n";
 }
 
 export function sitemapXml(origin) {
-  const entries = PUBLIC_PAGES.flatMap((page) => {
-    const links = LANGUAGES.map(
-      ({ code }) =>
-        '<xhtml:link rel="alternate" hreflang="' +
-        code +
-        '" href="' +
-        esc(origin + publicPageAddress(code, page)) +
-        '"/>',
-    ).join("");
-    const fallback =
-      '<xhtml:link rel="alternate" hreflang="x-default" href="' +
-      esc(origin + publicPageAddress("en", page)) +
-      '"/>';
-    return LANGUAGES.map(
-      ({ code }) =>
-        "<url><loc>" + esc(origin + publicPageAddress(code, page)) + "</loc>" + links + fallback + "</url>",
-    );
-  });
+  const entries = ["", ...Object.keys(LEGAL_PAGES)]
+    .map((path) => "<url><loc>" + esc(origin + "/" + path) + "</loc></url>")
+    .join("");
   return (
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' +
-    'xmlns:xhtml="http://www.w3.org/1999/xhtml">' +
-    entries.join("") +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+    entries +
     "</urlset>\n"
   );
 }
