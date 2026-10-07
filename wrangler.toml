@@ -2,9 +2,9 @@ name = "playlist-checker"
 main = "src/worker/index.js"
 compatibility_date = "2026-01-01"
 
-# No storage and no secrets: the worker keeps no state and holds no
-# credentials. The Spotify Client ID, the Last.fm key and username, and the
-# cache of Last.fm answers all live in each visitor's browser.
+# No secrets, and nothing about the visitor: the Spotify Client ID, the Last.fm
+# key and username, and the cache of Last.fm answers all live in each visitor's
+# browser. The only storage is the anonymous visit count below.
 
 # No request logs or traces: relay addresses carry Last.fm usernames and names
 # of what is being checked. Uploaded versions get no preview addresses.
@@ -39,11 +39,25 @@ SOURCE_URL = "https://github.com/xfuturomax/playlist-checker"
 enabled = false
 
 # Caps how often one address can use the Last.fm relay (the page itself makes
-# about 240 calls a minute). The only binding; the worker runs without it.
+# about 240 calls a minute). The worker runs without it.
 [[ratelimits]]
 name = "RELAY_LIMITER"
 namespace_id = "1001"
 simple = { limit = 600, period = 60 }
+
+# A second limit, for visit notes: far more than a person sends in a minute.
+[[ratelimits]]
+name = "VISIT_LIMITER"
+namespace_id = "1002"
+simple = { limit = 60, period = 60 }
+
+# The anonymous visit count: one entry per screen view with the screen kind,
+# language, device class, country and referring host; no address, cookie or
+# identifier. Cloudflare keeps entries for three months. Without this binding
+# nothing is counted. The README explains how to read the totals.
+[[analytics_engine_datasets]]
+binding = "VISITS"
+dataset = "playlist_checker_visits"
 
 # Local runs see their own address rather than the production domain, so the
 # worker recognises them (no https redirect, no HSTS, local links).

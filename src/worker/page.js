@@ -24,6 +24,7 @@ export const APP_MODULES = [
   "lastfm-cache",
   "picks",
   "totals",
+  "visits",
   "address",
   "pages",
   "settings-file",

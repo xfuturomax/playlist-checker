@@ -12,6 +12,7 @@ import { saveDraft } from "./screens/setup.js";
 import { handleSignInReturn, takeSignInReturn } from "./spotify.js";
 import { resolveLang } from "./text.js";
 import { initTheme, setTheme } from "./theme.js";
+import { initVisits } from "./visits.js";
 
 function isPlainClick(e) {
   return e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
@@ -55,6 +56,7 @@ function initPageListeners() {
 }
 
 initState();
+initVisits();
 state.lang = resolveLang(readAddress().lang);
 initTheme();
 initActionBar();

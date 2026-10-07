@@ -8,6 +8,7 @@ import { exportSettings, importSettings } from "../settings-file.js";
 import { login } from "../spotify.js";
 import { storageDrop, storageGet, storageSet } from "../storage.js";
 import { t } from "../text.js";
+import { countView } from "../visits.js";
 
 // Three steps. Which one opens is decided by what is present and valid, never
 // by a stored position: after an import, or after a key stops working, a
@@ -112,6 +113,7 @@ export function screenSetup(msg, step) {
   // The guide owns its address, and writing the step actually shown is what
   // corrects an address that asked for one the visitor cannot reach yet.
   writeAddress({ screen: "setup", step: setupStep }, false);
+  countView("setup");
   const text = msg ? (msg.key ? t(msg.key, msg.vars) : msg.text) : "";
   state.rerender = function () {
     saveDraft();

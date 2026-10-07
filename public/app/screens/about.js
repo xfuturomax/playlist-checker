@@ -6,6 +6,7 @@ import { legalLink } from "../legal.js";
 import { publicPageTitle } from "../pages.js";
 import { draftGet, saveDraft, screenSetup } from "./setup.js";
 import { I18N, t } from "../text.js";
+import { countView } from "../visits.js";
 
 // Nothing typed anywhere yet. The guide saves its progress on every redraw,
 // a language switch included, so a progress record of empty fields says
@@ -23,6 +24,7 @@ export function screenAbout() {
   state.bar.classList.remove("on");
   state.rerender = renderAbout;
   renderAbout();
+  countView("start");
 }
 
 function renderAbout() {

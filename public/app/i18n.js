@@ -7,7 +7,7 @@
 export const PRODUCT_NAME = "Playlist Checker";
 
 // The date the Privacy and Terms texts last changed, shared by every language.
-export const LEGAL_UPDATED = "2026-10-02";
+export const LEGAL_UPDATED = "2026-10-07";
 
 // Paragraph counts of the Privacy and Terms texts, which are also their addresses.
 export const LEGAL_PAGES = { privacy: 8, terms: 6 };
@@ -75,7 +75,8 @@ export const DICTIONARIES = {
       "Spotify is contacted directly from your browser. Last.fm is contacted through this site’s server, because Last.fm does not accept calls from web pages. Those requests carry your Last.fm API key and username and the artist, track and album names being checked; the server passes them on, returns the answer and keeps nothing.",
     "privacy.4":
       "The site is hosted on Cloudflare, which processes technical request details such as your IP address to deliver it, under its own privacy policy.",
-    "privacy.5": "There are no analytics, no trackers, no advertising and no cookies.",
+    "privacy.5":
+      "Visits are counted anonymously on this site’s own server: each screen you open is noted with its kind (start, setup, playlist list, analysis, Privacy or Terms), the interface language, whether the screen is a phone’s, your country and, when you arrive from another site, that site’s name. No IP address, cookie or identifier is kept, so visits cannot be linked to you or to each other, and the notes are deleted after three months. If your browser asks sites not to track you (Global Privacy Control or Do Not Track), nothing is counted. There are no trackers, no advertising and no cookies.",
     "privacy.6": "A settings file you save contains your keys. Keep it private.",
     "privacy.7":
       "Sign out ends your Spotify session in this browser and keeps your Last.fm details. To erase everything, use Reset or clear this site’s data in your browser settings. Your Spotify playlists and Last.fm history are not affected. To revoke the app’s access to Spotify, remove it under Manage apps in your Spotify account.",
@@ -301,7 +302,8 @@ export const DICTIONARIES = {
       "Con Spotify se conecta directamente desde tu navegador. Con Last.fm se conecta a través del servidor de este sitio, porque Last.fm no acepta llamadas desde páginas web. Esas peticiones llevan tu clave API y tu usuario de Last.fm y los nombres de artistas, canciones y álbumes que se comprueban; el servidor las reenvía, devuelve la respuesta y no guarda nada.",
     "privacy.4":
       "El sitio está alojado en Cloudflare, que procesa datos técnicos de las peticiones, como tu dirección IP, para servirlo, según su propia política de privacidad.",
-    "privacy.5": "No hay analítica, ni rastreadores, ni publicidad, ni cookies.",
+    "privacy.5":
+      "Las visitas se cuentan de forma anónima en el propio servidor de este sitio: de cada pantalla que abres se anota su tipo (inicio, configuración, lista de playlists, análisis, Privacidad o Condiciones), el idioma de la interfaz, si la pantalla es de un móvil, tu país y, si llegas desde otro sitio, el nombre de ese sitio. No se guarda ninguna dirección IP, cookie ni identificador, así que las visitas no pueden vincularse contigo ni entre sí, y las anotaciones se borran a los tres meses. Si tu navegador pide a los sitios que no te rastreen (Global Privacy Control o Do Not Track), no se cuenta nada. No hay rastreadores, ni publicidad, ni cookies.",
     "privacy.6": "Un archivo de configuración que guardes contiene tus claves. Mantenlo en privado.",
     "privacy.7":
       "Cerrar sesión termina tu sesión de Spotify en este navegador y conserva tus datos de Last.fm. Para borrarlo todo, usa Restablecer o elimina los datos de este sitio en la configuración del navegador. Tus listas de Spotify y tu historial de Last.fm no se ven afectados. Para retirar el acceso de la app a Spotify, quítala en Administrar apps de tu cuenta de Spotify.",
@@ -529,7 +531,8 @@ export const DICTIONARIES = {
       "O Spotify é acessado diretamente pelo seu navegador. O Last.fm é acessado pelo servidor deste site, porque o Last.fm não aceita chamadas de páginas web. Essas requisições levam sua chave de API e seu usuário do Last.fm e os nomes de artistas, faixas e álbuns verificados; o servidor as repassa, devolve a resposta e não guarda nada.",
     "privacy.4":
       "O site é hospedado na Cloudflare, que processa dados técnicos das requisições, como seu endereço IP, para entregá-lo, conforme a própria política de privacidade.",
-    "privacy.5": "Não há análises, rastreadores, publicidade nem cookies.",
+    "privacy.5":
+      "As visitas são contadas de forma anônima no próprio servidor deste site: de cada tela que você abre são anotados o tipo (início, configuração, lista de playlists, análise, Privacidade ou Termos), o idioma da interface, se a tela é de celular, o seu país e, quando você chega de outro site, o nome desse site. Nenhum endereço IP, cookie ou identificador é guardado, então as visitas não podem ser ligadas a você nem umas às outras, e as anotações são apagadas após três meses. Se o seu navegador pede aos sites que não rastreiem você (Global Privacy Control ou Do Not Track), nada é contado. Não há rastreadores, publicidade nem cookies.",
     "privacy.6": "Um arquivo de configurações que você salvar contém suas chaves. Guarde-o em sigilo.",
     "privacy.7":
       "Sair encerra sua sessão do Spotify neste navegador e mantém seus dados do Last.fm. Para apagar tudo, use Redefinir ou limpe os dados deste site nas configurações do navegador. Suas playlists do Spotify e seu histórico do Last.fm não são afetados. Para revogar o acesso do app ao Spotify, remova-o em Gerenciar apps na sua conta do Spotify.",
@@ -756,7 +759,8 @@ export const DICTIONARIES = {
       "Spotify wird direkt aus deinem Browser angesprochen. Last.fm wird über den Server dieser Seite angesprochen, weil Last.fm keine Aufrufe aus Webseiten zulässt. Diese Anfragen enthalten deinen Last.fm-API-Schlüssel und -Benutzernamen und die geprüften Künstler-, Titel- und Albumnamen; der Server leitet sie weiter, gibt die Antwort zurück und speichert nichts.",
     "privacy.4":
       "Die Seite wird bei Cloudflare gehostet. Cloudflare verarbeitet technische Anfragedaten wie deine IP-Adresse, um sie auszuliefern, nach eigener Datenschutzerklärung.",
-    "privacy.5": "Es gibt keine Analyse, keine Tracker, keine Werbung und keine Cookies.",
+    "privacy.5":
+      "Besuche werden anonym auf dem eigenen Server dieser Seite gezählt: Für jede geöffnete Ansicht wird ihre Art (Start, Einrichtung, Playlist-Liste, Analyse, Datenschutz oder Nutzungsbedingungen) notiert, die Sprache der Oberfläche, ob es ein Handybildschirm ist, dein Land und, wenn du von einer anderen Seite kommst, deren Name. Es werden keine IP-Adresse, kein Cookie und keine Kennung gespeichert, daher lassen sich Besuche weder dir noch einander zuordnen, und die Einträge werden nach drei Monaten gelöscht. Wenn dein Browser Seiten bittet, dich nicht zu verfolgen (Global Privacy Control oder Do Not Track), wird nichts gezählt. Es gibt keine Tracker, keine Werbung und keine Cookies.",
     "privacy.6": "Eine gespeicherte Einstellungsdatei enthält deine Schlüssel. Gib sie nicht weiter.",
     "privacy.7":
       "Abmelden beendet deine Spotify-Sitzung in diesem Browser und behält deine Last.fm-Daten. Um alles zu löschen, nutze Zurücksetzen oder entferne die Daten dieser Seite in den Browser-Einstellungen. Deine Spotify-Playlists und dein Last.fm-Verlauf bleiben unberührt. Um der App den Zugriff auf Spotify zu entziehen, entferne sie unter Apps verwalten in deinem Spotify-Konto.",
@@ -987,7 +991,8 @@ export const DICTIONARIES = {
       "Spotify est contacté directement depuis ton navigateur. Last.fm est contacté via le serveur de ce site, car Last.fm n’accepte pas les appels depuis des pages web. Ces requêtes transportent ta clé API et ton nom d’utilisateur Last.fm et les noms d’artistes, de titres et d’albums vérifiés ; le serveur les transmet, renvoie la réponse et ne garde rien.",
     "privacy.4":
       "Le site est hébergé chez Cloudflare, qui traite des données techniques des requêtes, comme ton adresse IP, pour le servir, selon sa propre politique de confidentialité.",
-    "privacy.5": "Il n’y a ni statistiques, ni traceurs, ni publicité, ni cookies.",
+    "privacy.5":
+      "Les visites sont comptées de façon anonyme sur le propre serveur de ce site : pour chaque écran que tu ouvres, on note son type (accueil, configuration, liste des playlists, analyse, Confidentialité ou Conditions), la langue de l’interface, s’il s’agit d’un écran de téléphone, ton pays et, si tu arrives depuis un autre site, le nom de ce site. Aucune adresse IP, aucun cookie ni identifiant n’est conservé : les visites ne peuvent être reliées ni à toi ni entre elles, et les notes sont effacées au bout de trois mois. Si ton navigateur demande aux sites de ne pas te suivre (Global Privacy Control ou Do Not Track), rien n’est compté. Il n’y a ni traceurs, ni publicité, ni cookies.",
     "privacy.6": "Un fichier de réglages que tu enregistres contient tes clés. Garde-le pour toi.",
     "privacy.7":
       "Se déconnecter met fin à ta session Spotify dans ce navigateur et garde tes données Last.fm. Pour tout effacer, utilise Réinitialiser ou supprime les données de ce site dans les réglages du navigateur. Tes playlists Spotify et ton historique Last.fm ne sont pas touchés. Pour retirer l’accès de l’app à Spotify, supprime-la dans Gérer les applis de ton compte Spotify.",
@@ -1215,7 +1220,8 @@ export const DICTIONARIES = {
       "Spotify viene contattato direttamente dal tuo browser. Last.fm viene contattato tramite il server di questo sito, perché Last.fm non accetta chiamate dalle pagine web. Queste richieste contengono la tua chiave API e il nome utente di Last.fm e i nomi di artisti, brani e album controllati; il server le inoltra, restituisce la risposta e non conserva nulla.",
     "privacy.4":
       "Il sito è ospitato su Cloudflare, che tratta dati tecnici delle richieste, come il tuo indirizzo IP, per servirlo, secondo la propria informativa sulla privacy.",
-    "privacy.5": "Non ci sono statistiche, tracker, pubblicità né cookie.",
+    "privacy.5":
+      "Le visite vengono contate in modo anonimo sul server stesso di questo sito: per ogni schermata che apri si annotano il tipo (inizio, configurazione, elenco delle playlist, analisi, Privacy o Termini), la lingua dell’interfaccia, se lo schermo è di un telefono, il tuo paese e, se arrivi da un altro sito, il nome di quel sito. Non viene conservato alcun indirizzo IP, cookie o identificativo, quindi le visite non possono essere collegate a te né tra loro, e le annotazioni vengono cancellate dopo tre mesi. Se il tuo browser chiede ai siti di non tracciarti (Global Privacy Control o Do Not Track), non viene contato nulla. Non ci sono tracker, pubblicità né cookie.",
     "privacy.6": "Un file di impostazioni salvato contiene le tue chiavi. Tienilo riservato.",
     "privacy.7":
       "Esci chiude la sessione di Spotify in questo browser e mantiene i dati di Last.fm. Per cancellare tutto, usa Reimposta o elimina i dati di questo sito nelle impostazioni del browser. Le tue playlist Spotify e la cronologia Last.fm non vengono toccate. Per revocare l’accesso dell’app a Spotify, rimuovila da Gestisci app nel tuo account Spotify.",
@@ -1443,7 +1449,8 @@ export const DICTIONARIES = {
       "Ze Spotify przeglądarka łączy się bezpośrednio. Z Last.fm łączy się przez serwer tej strony, bo Last.fm nie przyjmuje zapytań ze stron internetowych. Te zapytania zawierają Twój klucz API i nazwę użytkownika Last.fm oraz sprawdzane nazwy wykonawców, utworów i albumów; serwer je przekazuje, zwraca odpowiedź i niczego nie zapisuje.",
     "privacy.4":
       "Strona działa na Cloudflare, który przetwarza techniczne dane zapytań, takie jak adres IP, aby ją dostarczyć, zgodnie z własną polityką prywatności.",
-    "privacy.5": "Nie ma analityki, śledzenia, reklam ani plików cookie.",
+    "privacy.5":
+      "Wizyty są liczone anonimowo na własnym serwerze tej strony: przy każdym otwartym ekranie zapisuje się jego rodzaj (start, konfiguracja, lista playlist, analiza, Prywatność lub Warunki), język interfejsu, czy to ekran telefonu, Twój kraj oraz, jeśli trafiasz tu z innej strony, jej nazwę. Nie jest przechowywany żaden adres IP, plik cookie ani identyfikator, więc wizyt nie da się powiązać z Tobą ani ze sobą nawzajem, a wpisy są usuwane po trzech miesiącach. Jeśli Twoja przeglądarka prosi strony, by Cię nie śledziły (Global Privacy Control lub Do Not Track), nic nie jest liczone. Nie ma śledzenia, reklam ani plików cookie.",
     "privacy.6": "Zapisany plik ustawień zawiera Twoje klucze. Nie udostępniaj go.",
     "privacy.7":
       "Wyloguj kończy sesję Spotify w tej przeglądarce i zachowuje dane Last.fm. Aby wszystko usunąć, użyj Resetuj albo wyczyść dane tej strony w ustawieniach przeglądarki. Twoje playlisty Spotify i historia Last.fm pozostaną nietknięte. Aby odebrać aplikacji dostęp do Spotify, usuń ją w sekcji Zarządzaj aplikacjami na koncie Spotify.",
@@ -1685,7 +1692,8 @@ export const DICTIONARIES = {
       "Spotify’a doğrudan tarayıcınızdan bağlanılır. Last.fm’e bu sitenin sunucusu üzerinden bağlanılır, çünkü Last.fm web sayfalarından gelen çağrıları kabul etmez. Bu istekler Last.fm API anahtarınızı ve kullanıcı adınızı, kontrol edilen sanatçı, şarkı ve albüm adlarını taşır; sunucu bunları iletir, yanıtı döndürür ve hiçbir şey saklamaz.",
     "privacy.4":
       "Site Cloudflare üzerinde barındırılır; Cloudflare, siteyi sunmak için IP adresiniz gibi teknik istek bilgilerini kendi gizlilik politikasına göre işler.",
-    "privacy.5": "Analiz, izleyici, reklam ve çerez yoktur.",
+    "privacy.5":
+      "Ziyaretler bu sitenin kendi sunucusunda anonim olarak sayılır: açtığınız her ekran için türü (başlangıç, kurulum, çalma listesi listesi, analiz, Gizlilik veya Koşullar), arayüz dili, ekranın telefon ekranı olup olmadığı, ülkeniz ve başka bir siteden geldiyseniz o sitenin adı kaydedilir. Hiçbir IP adresi, çerez veya tanımlayıcı saklanmaz; bu yüzden ziyaretler ne sizinle ne de birbirleriyle ilişkilendirilebilir ve kayıtlar üç ay sonra silinir. Tarayıcınız sitelerden sizi izlememelerini istiyorsa (Global Privacy Control veya Do Not Track) hiçbir şey sayılmaz. İzleyici, reklam ve çerez yoktur.",
     "privacy.6": "Kaydettiğiniz ayar dosyası anahtarlarınızı içerir. Kimseyle paylaşmayın.",
     "privacy.7":
       "Çıkış yap, bu tarayıcıdaki Spotify oturumunuzu kapatır ve Last.fm bilgilerinizi korur. Her şeyi silmek için Sıfırla’yı kullanın veya tarayıcı ayarlarından bu sitenin verilerini temizleyin. Spotify çalma listeleriniz ve Last.fm geçmişiniz etkilenmez. Uygulamanın Spotify erişimini kaldırmak için Spotify hesabınızda Uygulamaları yönet bölümünden kaldırın.",
@@ -1906,7 +1914,8 @@ export const DICTIONARIES = {
       "Spotify にはブラウザーから直接接続します。Last.fm は Web ページからの呼び出しを受け付けないため、このサイトのサーバー経由で接続します。そのリクエストには Last.fm の API キーとユーザー名、チェックするアーティスト・曲・アルバム名が含まれます。サーバーはそれを転送して応答を返すだけで、何も保存しません。",
     "privacy.4":
       "このサイトは Cloudflare でホストされています。Cloudflare はサイトを配信するために IP アドレスなどの技術的なリクエスト情報を、自社のプライバシーポリシーに従って処理します。",
-    "privacy.5": "アクセス解析、トラッカー、広告、Cookie は一切ありません。",
+    "privacy.5":
+      "訪問数はこのサイト自身のサーバーで匿名で数えています。開いた画面ごとに、その種類（スタート、セットアップ、プレイリスト一覧、分析、プライバシー、利用規約）、表示言語、スマートフォンの画面かどうか、国、そして他のサイトから来た場合はそのサイト名を記録します。IP アドレス、Cookie、識別子は一切保存しないため、訪問をあなたに結びつけたり訪問どうしを結びつけたりすることはできません。記録は 3 か月後に削除されます。ブラウザーがサイトに追跡しないよう求めている場合（Global Privacy Control または Do Not Track）は何も数えません。トラッカー、広告、Cookie は一切ありません。",
     "privacy.6": "保存した設定ファイルにはキーが含まれます。他人と共有しないでください。",
     "privacy.7":
       "サインアウトすると、このブラウザーの Spotify セッションが終了し、Last.fm の情報は残ります。すべて消去するには、リセットを使うか、ブラウザーの設定でこのサイトのデータを削除してください。Spotify のプレイリストと Last.fm の履歴には影響しません。Spotify へのアクセス権を取り消すには、Spotify アカウントの「アプリを管理」から削除してください。",
@@ -2125,7 +2134,8 @@ export const DICTIONARIES = {
       "К Spotify браузер обращается напрямую. К Last.fm — через сервер этого сайта, потому что Last.fm не принимает запросы с веб-страниц. В этих запросах передаются ваш API-ключ и имя пользователя Last.fm и названия проверяемых исполнителей, треков и альбомов; сервер пересылает их, возвращает ответ и ничего не сохраняет.",
     "privacy.4":
       "Сайт размещён на Cloudflare, который обрабатывает технические данные запросов, например IP-адрес, чтобы доставить сайт, по своей политике конфиденциальности.",
-    "privacy.5": "Здесь нет аналитики, трекеров, рекламы и cookie.",
+    "privacy.5":
+      "Посещения считаются анонимно на собственном сервере сайта: для каждого открытого экрана отмечается его вид (стартовый экран, настройка, список плейлистов, анализ, Конфиденциальность или Условия), язык интерфейса, телефонный ли это экран, ваша страна и, если вы пришли с другого сайта, его название. IP-адрес, cookie и какой-либо идентификатор не сохраняются, поэтому посещения нельзя связать ни с вами, ни друг с другом, а записи удаляются через три месяца. Если ваш браузер просит сайты не отслеживать вас (Global Privacy Control или Do Not Track), ничего не считается. Здесь нет трекеров, рекламы и cookie.",
     "privacy.6": "Сохранённый файл настроек содержит ваши ключи. Не передавайте его другим.",
     "privacy.7":
       "«Выйти» завершает сессию Spotify в этом браузере и сохраняет данные Last.fm. Чтобы стереть всё, нажмите «Сброс» или очистите данные этого сайта в настройках браузера. Ваши плейлисты Spotify и история Last.fm не пострадают. Чтобы отозвать доступ приложения к Spotify, удалите его в разделе «Управление приложениями» аккаунта Spotify.",

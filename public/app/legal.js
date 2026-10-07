@@ -9,6 +9,7 @@ import { storageGet, storageSet } from "./storage.js";
 import { LEGAL_PAGES } from "./i18n.js";
 import { legalDate, legalPlaceholders, publicPageAddress, publicPageTitle } from "./pages.js";
 import { t } from "./text.js";
+import { countView } from "./visits.js";
 
 // A real link, so a new tab or a copied address still work; a plain click is
 // handled in the page by the delegated listener.
@@ -63,6 +64,7 @@ export function screenLegal(page) {
     renderLegal(page);
   };
   renderLegal(page);
+  countView(page);
   window.scrollTo(0, 0);
 }
 

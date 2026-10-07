@@ -17,8 +17,11 @@ how to run your own copy are in the [README](README.md).
 - `src/worker/` is the Cloudflare Worker (routing, the Last.fm relay, headers, the page
   shell); `public/app/` is the browser app, one module per area; `test/` uses Node's
   built-in test runner. The README's Development section has the full layout.
-- The server keeps nothing: no database, no logs, no analytics, no cookies. User data stays
-  in the browser. Do not add anything that stores or sends it elsewhere.
+- The server keeps nothing about the visitor: no database, no logs, no cookies. User data
+  stays in the browser. Do not add anything that stores or sends it elsewhere. The one
+  exception is the anonymous visit count (`public/app/visits.js`, `src/worker/visits.js`):
+  fixed words only, no address, identifier or user content, and nothing when the browser
+  asks not to be tracked. Anything added to it needs the Privacy text changed too.
 
 ## Rules that are easy to break
 

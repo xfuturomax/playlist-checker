@@ -12,6 +12,10 @@ versioning: [SemVer](https://semver.org/).
   with each page naming its translations; the sitemap lists them all
 - Opening such an address switches the interface to its language; switching language on it
   moves to the same page in the new language
+- An anonymous visit count: each screen view is noted on the site's own server with its kind,
+  language, phone or larger, country and referring site, without IP address, cookie or
+  identifier, and not at all when the browser asks not to be tracked. Privacy says so in
+  every language
 
 ### Changed
 

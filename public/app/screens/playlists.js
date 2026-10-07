@@ -5,6 +5,7 @@ import { masthead } from "../layout.js";
 import { screenAnalyse } from "./analysis.js";
 import { sp } from "../spotify.js";
 import { t } from "../text.js";
+import { countView } from "../visits.js";
 
 export function playlistsCacheKey() {
   return ["playlists", state.me.id].join(CACHE_SEP);
@@ -62,6 +63,7 @@ export async function screenPlaylists() {
   state.currentPlaylist = null;
   state.rerender = renderPlaylistsLoading;
   renderPlaylistsLoading();
+  countView("list");
 
   await loadPlaylists();
   if (seq !== state.screenSeq) return;

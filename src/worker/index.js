@@ -1,14 +1,16 @@
 // Playlist Checker: finds what is new in a Spotify playlist using Last.fm
-// listening history. The worker serves the page shell and relays Last.fm; the
-// app's code and images are static files served before the worker is asked.
-// It has no storage and no secrets: the Spotify Client ID, the Last.fm key and
-// username, and the cache of Last.fm answers all live in the visitor's browser.
+// listening history. The worker serves the page shell, relays Last.fm and
+// counts visits anonymously; the app's code and images are static files served
+// before the worker is asked. It holds no secrets and keeps nothing about the
+// visitor: the Spotify Client ID, the Last.fm key and username, and the cache
+// of Last.fm answers all live in the visitor's browser.
 
 import { pageSecurityHeaders, withSecurityHeaders } from "./headers.js";
 import { inlineScriptHashes, renderPage } from "./page.js";
 import { lastfm } from "./relay.js";
 import { json, text } from "./responses.js";
 import { robotsTxt, sitemapXml } from "./seo.js";
+import { VISIT_PATH, visit } from "./visits.js";
 import { contactEmail, isLocalHost, primaryDomain, siteOrigin, sourceUrl } from "./site.js";
 import { publicPageAddress, readPublicPage } from "../../public/app/pages.js";
 
@@ -37,6 +39,8 @@ function englishPath(pathname) {
 
 async function route(request, env, url) {
   const primary = primaryDomain(env);
+  // Answered the same everywhere, never redirected: notes elsewhere are dropped.
+  if (url.pathname === VISIT_PATH) return visit(request, env, url, primary);
   const path = englishPath(url.pathname);
 
   if (primary && url.hostname === "www." + primary) {

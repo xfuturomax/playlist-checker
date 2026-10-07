@@ -10,6 +10,7 @@ import { masthead } from "../layout.js";
 import { picksDrop, picksOutside, picksRestore, picksSave } from "../picks.js";
 import { screenPlaylists } from "./playlists.js";
 import { isKeyRefusalError, keyRefusedDuringUse } from "./setup.js";
+import { countView } from "../visits.js";
 import { ensureFreshSession, sp } from "../spotify.js";
 import { I18N, t } from "../text.js";
 import { countTotals } from "../totals.js";
@@ -50,6 +51,7 @@ export async function screenAnalyse(playlistId, opts) {
 
   state.rerender = renderAnalyseProgress;
   renderAnalyseProgress();
+  countView("analysis");
 
   // 1. playlist tracks (Spotify returns them only for own/collaborative playlists)
   let raw = [];

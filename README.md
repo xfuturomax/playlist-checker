@@ -5,7 +5,7 @@ how often you have played each artist and track, and shows what you have already
 what is new to you — so you can keep the new tracks and clear out the rest.
 
 **Use it at https://playlistchecker.com.** It runs entirely in your browser; the server
-keeps nothing.
+keeps nothing about you, only an anonymous count of visits.
 
 ![An analysed playlist: tracks grouped by artist, each with its play count](public/img/analysis-light.webp)
 
@@ -45,8 +45,10 @@ Everything stays in the browser you use the app in:
 | Language and theme           | `localStorage`                                     |
 
 The server relays Last.fm requests, because Last.fm does not allow browsers to call it
-directly, and keeps nothing: no database, no logs, no analytics, no cookies. Spotify is
-called straight from your browser. The [Privacy](https://playlistchecker.com/privacy) page
+directly, and keeps nothing about you: no database, no logs, no cookies. Visits are counted
+anonymously — the kind of screen, language, phone or larger, country and the referring
+site, with no IP address or identifier — and not at all when your browser asks not to be
+tracked. Spotify is called straight from your browser. The [Privacy](https://playlistchecker.com/privacy) page
 has the details.
 
 **Sign out** on the playlist list ends the Spotify session and keeps your settings;
@@ -128,7 +130,8 @@ Before deploying, edit `wrangler.toml`:
   users the source of the version you run, changes included.
 
 The Privacy and Terms texts describe how playlistchecker.com is run; make sure they are
-true for yours.
+true for yours. The visit count is optional: remove the `analytics_engine_datasets` entry
+to turn it off, and edit the Privacy paragraph about it.
 
 The page runs under a strict Content Security Policy: only its own files and two inline
 snippets allowed by hash, and connections only to the site and Spotify. Keep the Cloudflare
@@ -189,6 +192,45 @@ To attach a domain:
 The `workers.dev` address is deliberately not redirected: people using it would lose their
 settings and sign-in.
 
+### Reading visits
+
+The page sends a short note to `/hit` when it shows a screen of a new kind; the worker
+checks it and writes one entry to the Workers Analytics Engine data set
+`playlist_checker_visits`. Only entries on `PRIMARY_DOMAIN` are kept; local runs, the
+`workers.dev` address and copies without the binding count nothing. Cloudflare keeps
+entries for three months.
+
+| Column    | Holds                                                                |
+| --------- | -------------------------------------------------------------------- |
+| `blob1`   | screen: `start`, `setup`, `list`, `analysis`, `privacy` or `terms`   |
+| `blob2`   | interface language (`en`, `ru`, `pt-BR`…)                            |
+| `blob3`   | `phone` or `large`                                                   |
+| `blob4`   | two-letter country, or `unknown`                                     |
+| `blob5`   | referring site's host, only on arrival from another site; else empty |
+| `double1` | always 1                                                             |
+
+To read it, create an API token with the **Account Analytics: Read** permission and post SQL
+to the account's Analytics Engine endpoint. At volume Cloudflare samples entries, so sum
+`_sample_interval` rather than counting rows:
+
+```bash
+curl -s "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/analytics_engine/sql" \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -d "SELECT toDate(timestamp) AS day, SUM(_sample_interval) AS views
+      FROM playlist_checker_visits
+      WHERE timestamp > NOW() - INTERVAL '30' DAY
+      GROUP BY day ORDER BY day"
+```
+
+Other questions replace the grouping:
+
+- views per screen: `SELECT blob1 AS screen, SUM(_sample_interval) AS views … GROUP BY screen`
+- per language, country or device: group by `blob2`, `blob4` or `blob3` the same way
+- top referring sites over a week:
+  `SELECT blob5 AS site, SUM(_sample_interval) AS views FROM playlist_checker_visits
+WHERE timestamp > NOW() - INTERVAL '7' DAY AND blob5 != '' GROUP BY site
+ORDER BY views DESC LIMIT 20`
+
 ## Development
 
 ```bash
@@ -203,10 +245,10 @@ Spotify refuses `localhost` and accepts plain http only for a loopback IP addres
 
 There is no build step. The layout:
 
-- `src/worker/` — the worker: routing (`index.js`), the Last.fm relay, security headers,
+- `src/worker/` — the worker: routing (`index.js`), the Last.fm relay, the visit count, security headers,
   search-engine texts and the HTML shell of the page
 - `public/app/` — the app: one browser module per area (Spotify sign-in, Last.fm and its
-  cache, addresses, each screen, the action bar), the stylesheet and the interface texts;
+  cache, addresses, each screen, the action bar, the visit note), the stylesheet and the interface texts;
   `main.js` starts it
 - `public/img/` — screenshots and the link-preview picture
 - `public/_headers` — headers for the static files; the app's code is revalidated on every
