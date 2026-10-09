@@ -234,10 +234,10 @@ test("relay over plain http is refused", async () => {
 test("HSTS covers subdomains on the primary domain only, and is absent locally", async () => {
   assert.equal(
     (await request("/")).headers.get("strict-transport-security"),
-    "max-age=86400; includeSubDomains",
+    "max-age=63072000; includeSubDomains",
   );
   const dev = await worker.fetch(new Request("https://playlist-checker.example.workers.dev/"), ENV);
-  assert.equal(dev.headers.get("strict-transport-security"), "max-age=86400");
+  assert.equal(dev.headers.get("strict-transport-security"), "max-age=63072000");
   const local = await worker.fetch(new Request("http://localhost:8787/"), ENV);
   assert.equal(local.status, 200);
   assert.equal(local.headers.get("strict-transport-security"), null);

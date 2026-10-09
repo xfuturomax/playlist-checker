@@ -39,7 +39,7 @@ export function pageSecurityHeaders(scriptHashes) {
 }
 
 // Short on purpose while it is new: a browser keeps the rule for this long.
-const HSTS_MAX_AGE = 86400;
+const HSTS_MAX_AGE = 63072000;
 
 function hstsFor(url, primary) {
   if (isLocalHost(url.hostname)) return null;

@@ -2,7 +2,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Content-Security-Policy: frame-ancestors 'none'; base-uri 'none'
-  Strict-Transport-Security: max-age=86400
+  Strict-Transport-Security: max-age=63072000
 
 # The app's code: the browser keeps it but checks for changes on every load,
 # so a page from a new deployment never runs with code from an older one.
